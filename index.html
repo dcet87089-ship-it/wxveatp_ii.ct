@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#07070d">
+  <title>Wave Chatkawee | Bio Links & Portfolio</title>
+  <meta name="description" content="โปรไฟล์และช่องทางติดต่อของ Wave Chatkawee (@wxveatp_ii) รวมลิงก์โซเชียลมีเดียและข้อมูลการติดต่อ">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="profile.png">
+  <link rel="apple-touch-icon" href="profile.png">
+
+  <!-- Google Fonts: Prompt & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Particle & Stars Canvas -->
+  <canvas id="cosmic-canvas"></canvas>
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Ambient Light Orbs -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Top Floating Action Bar -->
+  <header class="top-nav">
+    <div class="brand-pill">
+      <span class="live-dot"></span>
+      <span>ONLINE NOW</span>
+    </div>
+    <button class="icon-btn share-trigger" id="shareBtn" aria-label="แชร์โปรไฟล์">
+      <i class="fa-solid fa-arrow-up-from-bracket"></i>
+      <span>แชร์</span>
+    </button>
+  </header>
+
+  <!-- Main Container (Mobile-First Layout) -->
+  <main class="main-wrapper">
+
+    <!-- Profile Header Section -->
+    <section class="profile-card glass-panel">
+      <!-- 3D Spinning Coin Container -->
+      <div class="coin-container" id="coinContainer" title="แตะหรือคลิกเพื่อหมุนเหรียญ!">
+        <div class="coin-aura"></div>
+        <div class="coin" id="coin">
+          <!-- Front Face -->
+          <div class="coin-face coin-front">
+            <div class="coin-bezel"></div>
+            <img src="profile.png" alt="Wave Profile" class="coin-img">
+            <div class="coin-glare"></div>
+          </div>
+          <!-- Back Face -->
+          <div class="coin-face coin-back">
+            <div class="coin-bezel"></div>
+            <img src="profile.png" alt="Wave Profile Back" class="coin-img">
+            <div class="coin-glare"></div>
+          </div>
+        </div>
+        <span class="coin-hint-badge">
+          <i class="fa-solid fa-sparkles"></i> แตะเพื่อ Spin!
+        </span>
+      </div>
+
+      <!-- Profile Details -->
+      <div class="profile-info">
+        <h1 class="profile-name">
+          Wave Chatkawee
+          <span class="verified-badge" title="Verified Creator">
+            <i class="fa-solid fa-circle-check"></i>
+          </span>
+        </h1>
+        <p class="profile-handle">@wxveatp_ii</p>
+
+        <p class="profile-bio">
+          ยินดีต้อนรับครับ! ติดตามไลฟ์สไตล์ หรือติดต่องานผ่านช่องทางด้านล่างนี้ได้เลย ✨
+        </p>
+
+        <!-- Tags / Badges -->
+        <div class="tags-group">
+          <span class="tag-chip"><i class="fa-solid fa-gamepad"></i> RoV & Bacon</span>
+          <span class="tag-chip"><i class="fa-solid fa-bolt"></i> Creator</span>
+          <span class="tag-chip"><i class="fa-solid fa-heart"></i> Friendly</span>
+          <span class="tag-chip"><i class="fa-solid fa-headphones"></i> Chill Vibes</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Social Links Section (Permanent Neon Glow) -->
+    <section class="section-container">
+      <div class="section-title">
+        <i class="fa-solid fa-link"></i>
+        <h2>ช่องทางโซเชียลมีเดีย</h2>
+      </div>
+
+      <div class="links-list">
+
+        <!-- 1. Instagram -->
+        <a href="https://www.instagram.com/wxveatp_ii" target="_blank" rel="noopener noreferrer" class="link-card card-instagram" data-label="Instagram">
+          <div class="card-glow"></div>
+          <div class="card-sheen"></div>
+          <div class="card-left">
+            <div class="icon-box">
+              <i class="fa-brands fa-instagram"></i>
+            </div>
+            <div class="card-text">
+              <span class="card-platform">Instagram</span>
+              <span class="card-sub">@wxveatp_ii • รูปภาพ & สตอรี่</span>
+            </div>
+          </div>
+          <div class="card-right">
+            <span class="action-pill">ติดตาม <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          </div>
+        </a>
+
+        <!-- 2. TikTok (With Animated Equalizer) -->
+        <a href="https://www.tiktok.com/@wxveatp_ii" target="_blank" rel="noopener noreferrer" class="link-card card-tiktok" data-label="TikTok">
+          <div class="card-glow"></div>
+          <div class="card-sheen"></div>
+          <div class="card-left">
+            <div class="icon-box">
+              <i class="fa-brands fa-tiktok"></i>
+            </div>
+            <div class="card-text">
+              <div class="platform-with-eq">
+                <span class="card-platform">TikTok</span>
+                <!-- Equalizer Animation -->
+                <div class="equalizer">
+                  <span class="eq-bar"></span>
+                  <span class="eq-bar"></span>
+                  <span class="eq-bar"></span>
+                  <span class="eq-bar"></span>
+                </div>
+              </div>
+              <span class="card-sub">@wxveatp_ii • วิดีโอสั้น & ไลฟ์สตรีม</span>
+            </div>
+          </div>
+          <div class="card-right">
+            <span class="action-pill">รับชม <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          </div>
+        </a>
+
+        <!-- 3. Facebook -->
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="link-card card-facebook" data-label="Facebook">
+          <div class="card-glow"></div>
+          <div class="card-sheen"></div>
+          <div class="card-left">
+            <div class="icon-box">
+              <i class="fa-brands fa-facebook-f"></i>
+            </div>
+            <div class="card-text">
+              <span class="card-platform">Facebook</span>
+              <span class="card-sub">Wave Chatkawee • เฟซบุ๊กส่วนตัว</span>
+            </div>
+          </div>
+          <div class="card-right">
+            <span class="action-pill">เยี่ยมชม <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          </div>
+        </a>
+
+        <!-- 4. LINE -->
+        <a href="https://line.me/ti/p/" target="_blank" rel="noopener noreferrer" class="link-card card-line" data-label="LINE">
+          <div class="card-glow"></div>
+          <div class="card-sheen"></div>
+          <div class="card-left">
+            <div class="icon-box">
+              <i class="fa-brands fa-line"></i>
+            </div>
+            <div class="card-text">
+              <span class="card-platform">LINE Official / Chat</span>
+              <span class="card-sub">ทักแชทพูดคุย / ติดต่องานด่วน</span>
+            </div>
+          </div>
+          <div class="card-right">
+            <span class="action-pill">เพิ่มเพื่อน <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          </div>
+        </a>
+
+        <!-- 5. Email Contact (Click to Open / Copy) -->
+        <div class="link-card card-email" data-label="Email">
+          <div class="card-glow"></div>
+          <div class="card-sheen"></div>
+          <div class="card-left">
+            <div class="icon-box">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div class="card-text">
+              <span class="card-platform">Email ติดต่องาน</span>
+              <span class="card-sub">wxveatp.contact@gmail.com</span>
+            </div>
+          </div>
+          <div class="card-right">
+            <button class="copy-icon-btn" data-copy="wxveatp.contact@gmail.com" data-type="อีเมล" aria-label="คัดลอกอีเมล">
+              <i class="fa-regular fa-copy"></i>
+              <span>คัดลอก</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Bank & Support Section (Quick Copy Cards) -->
+    <section class="section-container">
+      <div class="section-title">
+        <i class="fa-solid fa-wallet"></i>
+        <h2>การโอนเงิน & สนับสนุน</h2>
+      </div>
+
+      <div class="banking-card glass-panel">
+        <div class="card-sheen"></div>
+
+        <!-- Bank Item 1: Krungthai -->
+        <div class="bank-item">
+          <div class="bank-header">
+            <div class="bank-brand">
+              <div class="bank-badge-ktb">
+                <i class="fa-solid fa-building-columns"></i>
+              </div>
+              <div class="bank-meta">
+                <span class="bank-name">ธนาคารกรุงไทย (KTB)</span>
+                <span class="bank-holder">ชื่อบัญชี: Chatkawee</span>
+              </div>
+            </div>
+          </div>
+          <div class="bank-number-box">
+            <div class="number-display">
+              <span class="digits">661-8-01583-9</span>
+            </div>
+            <button class="quick-copy-btn btn-ktb" data-copy="6618015839" data-type="เลขบัญชีธนาคารกรุงไทย">
+              <i class="fa-regular fa-copy"></i>
+              <span>คัดลอกเลขบัญชี</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="bank-divider"></div>
+
+        <!-- Bank Item 2: PromptPay -->
+        <div class="bank-item">
+          <div class="bank-header">
+            <div class="bank-brand">
+              <div class="bank-badge-pp">
+                <i class="fa-solid fa-qrcode"></i>
+              </div>
+              <div class="bank-meta">
+                <span class="bank-name">พร้อมเพย์ (PromptPay)</span>
+                <span class="bank-holder">เบอร์โทรศัพท์มือถือ</span>
+              </div>
+            </div>
+          </div>
+          <div class="bank-number-box">
+            <div class="number-display">
+              <span class="digits">080-356-7635</span>
+            </div>
+            <button class="quick-copy-btn btn-promptpay" data-copy="0803567635" data-type="เบอร์พร้อมเพย์">
+              <i class="fa-regular fa-copy"></i>
+              <span>คัดลอกพร้อมเพย์</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+      <p class="footer-tagline">Designed with <i class="fa-solid fa-heart beat"></i> for Wave Chatkawee</p>
+      <p class="footer-copy">© 2026 @wxveatp_ii • All Rights Reserved</p>
+    </footer>
+
+  </main>
+
+  <!-- Interactive Toast Notification -->
+  <div class="toast-wrapper" id="toastWrapper">
+    <div class="toast-card glass-panel" id="toastCard">
+      <div class="toast-icon" id="toastIcon">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      <div class="toast-content">
+        <h4 id="toastTitle">คัดลอกสำเร็จ!</h4>
+        <p id="toastMessage">คัดลอกเลขบัญชีเรียบร้อยแล้ว</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
