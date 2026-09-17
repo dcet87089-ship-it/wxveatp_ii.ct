@@ -1,6 +1,6 @@
 /**
- * Modern Dark Glassmorphism 3D Luxe - Wave Chatkawee Bio Links
- * app.js - Canvas Starfield, 3D Coin Flip Boost, Confetti, Quick Copy & Haptics
+ * Modern Dark Glassmorphism 3D Luxe - Atthachai Panyasan Bio Links
+ * app.js - Cosmic Stars, 3D Tilt, 3D Coin Boost, Confetti, Quick Copy & Haptics
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let width, height, dpr;
   let stars = [];
-  const STAR_COUNT = 85;
+  const STAR_COUNT = 90;
 
   function resizeCanvas() {
     dpr = window.devicePixelRatio || 1;
@@ -33,11 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
       stars.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        radius: Math.random() * 1.5 + 0.5,
-        alpha: Math.random() * 0.7 + 0.2,
-        speed: Math.random() * 0.3 + 0.1,
+        radius: Math.random() * 1.6 + 0.4,
+        alpha: Math.random() * 0.75 + 0.25,
+        speed: Math.random() * 0.35 + 0.1,
         twinkleSpeed: Math.random() * 0.02 + 0.008,
-        color: ['#ffffff', '#a78bfa', '#38bdf8', '#f472b6'][Math.floor(Math.random() * 4)]
+        color: ['#ffffff', '#a78bfa', '#38bdf8', '#f472b6', '#ffd700'][Math.floor(Math.random() * 5)]
       });
     }
   }
@@ -46,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.clearRect(0, 0, width, height);
 
     for (let star of stars) {
-      // Twinkle & drift
       star.alpha += star.twinkleSpeed;
       if (star.alpha > 0.95 || star.alpha < 0.2) {
         star.twinkleSpeed = -star.twinkleSpeed;
@@ -95,20 +94,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function triggerConfetti(originX, originY) {
     const colors = ['#ffd700', '#00f2fe', '#ff007f', '#ffffff', '#a855f7', '#00ff87'];
-    const count = 55;
+    const count = 60;
 
     for (let i = 0; i < count; i++) {
       const angle = (Math.PI * 2 / count) * i + (Math.random() - 0.5);
-      const velocity = Math.random() * 7 + 4;
+      const velocity = Math.random() * 8 + 4;
       confettiList.push({
         x: originX,
         y: originY,
         vx: Math.cos(angle) * velocity,
-        vy: Math.sin(angle) * velocity - 2.5,
+        vy: Math.sin(angle) * velocity - 3,
         size: Math.random() * 6 + 4,
         color: colors[Math.floor(Math.random() * colors.length)],
         rotation: Math.random() * 360,
-        rotationSpeed: (Math.random() - 0.5) * 12,
+        rotationSpeed: (Math.random() - 0.5) * 14,
         opacity: 1,
         life: 0.98 + Math.random() * 0.015,
         gravity: 0.22
@@ -167,16 +166,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Haptic feedback
     if (navigator.vibrate) {
-      navigator.vibrate([30, 40, 50]);
+      navigator.vibrate([35, 45, 55]);
     }
 
     // Trigger rapid spin animation
     coin.classList.remove('boost-flip');
-    // Force reflow
     void coin.offsetWidth;
     coin.classList.add('boost-flip');
 
-    // Confetti position
+    // Confetti explosion from center of coin
     const rect = coinContainer.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
@@ -186,12 +184,71 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       coin.classList.remove('boost-flip');
       isCoinBoosting = false;
-    }, 1250);
+    }, 1300);
   });
 
 
   /* ==========================================================================
-     4. Quick Copy System & Toast Notifications
+     4. Interactive 3D Card Tilt (Pointer & Touch Depth)
+     ========================================================================== */
+  const tiltCards = document.querySelectorAll('.tilt-card');
+
+  tiltCards.forEach((card) => {
+    function handleMove(clientX, clientY) {
+      const rect = card.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      // Calculate tilt angles (max 10deg)
+      const rotateX = ((y - centerY) / centerY) * -9;
+      const rotateY = ((x - centerX) / centerX) * 9;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateZ(8px)`;
+    }
+
+    function resetTilt() {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+    }
+
+    // Pointer move (Mouse & Stylus)
+    card.addEventListener('pointermove', (e) => {
+      handleMove(e.clientX, e.clientY);
+    });
+
+    card.addEventListener('pointerleave', () => {
+      resetTilt();
+    });
+
+    // Touch events
+    card.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        handleMove(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
+
+    card.addEventListener('touchend', () => {
+      setTimeout(resetTilt, 200);
+    });
+  });
+
+  // Device orientation (Gentle 3D parallax on phones)
+  if (window.DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission !== 'function') {
+    window.addEventListener('deviceorientation', (e) => {
+      if (e.gamma !== null && e.beta !== null) {
+        const tiltX = Math.min(Math.max(e.gamma, -20), 20) * 0.15;
+        const tiltY = Math.min(Math.max(e.beta - 45, -20), 20) * 0.15;
+        document.body.style.setProperty('--gyro-x', `${tiltX}px`);
+        document.body.style.setProperty('--gyro-y', `${tiltY}px`);
+      }
+    }, { passive: true });
+  }
+
+
+  /* ==========================================================================
+     5. Quick Copy System & Toast Notifications
      ========================================================================== */
   const toastWrapper = document.getElementById('toastWrapper');
   const toastTitle = document.getElementById('toastTitle');
@@ -207,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Haptic vibration
     if (navigator.vibrate) {
-      navigator.vibrate(isSuccess ? [25, 30] : [80]);
+      navigator.vibrate(isSuccess ? [30, 40] : [90]);
     }
 
     toastTimer = setTimeout(() => {
@@ -220,7 +277,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(text);
       } else {
-        // Fallback for older webviews
         const textArea = document.createElement('textarea');
         textArea.value = text;
         textArea.style.position = 'fixed';
@@ -234,7 +290,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       showToast('คัดลอกสำเร็จ! ✨', `คัดลอก${typeLabel} (${text}) เรียบร้อยแล้ว`);
 
-      // Temporary button state visual
       if (buttonElement) {
         const originalHTML = buttonElement.innerHTML;
         buttonElement.innerHTML = `<i class="fa-solid fa-check"></i> <span>คัดลอกแล้ว!</span>`;
@@ -260,21 +315,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ==========================================================================
-     5. Web Share API & Profile Share Button
+     6. Web Share API & Profile Share Button
      ========================================================================== */
   const shareBtn = document.getElementById('shareBtn');
   if (shareBtn) {
     shareBtn.addEventListener('click', async () => {
       const shareData = {
-        title: 'Wave Chatkawee | Bio Links & Portfolio',
-        text: 'ติดตามโปรไฟล์และช่องทางติดต่อของ Wave Chatkawee (@wxveatp_ii) ✨',
+        title: 'Atthachai Panyasan | Bio Links & Portfolio',
+        text: 'ติดตามโปรไฟล์และช่องทางติดต่อของ Atthachai Panyasan (@wxveatp_ii) ✨',
         url: window.location.href
       };
 
       if (navigator.share) {
         try {
           await navigator.share(shareData);
-          showToast('แชร์สำเร็จ', 'ขอบคุณที่แชร์โปรไฟล์ครับ! 🚀');
+          showToast('แชร์สำเร็จ 🚀', 'ขอบคุณที่ร่วมแชร์โปรไฟล์ครับ!');
         } catch (err) {
           if (err.name !== 'AbortError') {
             fallbackShare();
@@ -292,7 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ==========================================================================
-     6. Mobile Touch Ripple Effect
+     7. Mobile Touch Ripple Effect
      ========================================================================== */
   const rippleTargets = document.querySelectorAll('.link-card, .quick-copy-btn, .icon-btn');
   rippleTargets.forEach((card) => {
@@ -318,4 +373,3 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
-

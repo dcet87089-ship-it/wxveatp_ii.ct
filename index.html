@@ -2,10 +2,10 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="theme-color" content="#07070d">
-  <title>Wave Chatkawee | Bio Links & Portfolio</title>
-  <meta name="description" content="โปรไฟล์และช่องทางติดต่อของ Wave Chatkawee (@wxveatp_ii) รวมลิงก์โซเชียลมีเดียและข้อมูลการติดต่อ">
+  <title>Atthachai Panyasan | Bio Links & Portfolio</title>
+  <meta name="description" content="โปรไฟล์และช่องทางติดต่อของ Atthachai Panyasan (@wxveatp_ii) รวมลิงก์โซเชียลมีเดียและข้อมูลการติดต่อ">
   
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="profile.png">
@@ -14,7 +14,7 @@
   <!-- Google Fonts: Prompt & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- FontAwesome 6 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -28,54 +28,67 @@
   <canvas id="cosmic-canvas"></canvas>
   <canvas id="confetti-canvas"></canvas>
 
-  <!-- Ambient Light Orbs -->
+  <!-- Ambient 3D Light Orbs -->
   <div class="ambient-glow glow-1"></div>
   <div class="ambient-glow glow-2"></div>
   <div class="ambient-glow glow-3"></div>
 
-  <!-- Top Floating Action Bar -->
+  <!-- Top Floating 3D Action Bar -->
   <header class="top-nav">
-    <div class="brand-pill">
+    <div class="brand-pill 3d-float-badge">
       <span class="live-dot"></span>
       <span>ONLINE NOW</span>
     </div>
-    <button class="icon-btn share-trigger" id="shareBtn" aria-label="แชร์โปรไฟล์">
+    <button class="icon-btn share-trigger 3d-touch-btn" id="shareBtn" aria-label="แชร์โปรไฟล์">
       <i class="fa-solid fa-arrow-up-from-bracket"></i>
       <span>แชร์</span>
     </button>
   </header>
 
-  <!-- Main Container (Mobile-First Layout) -->
+  <!-- Main Container (Mobile-First 3D Luxe Layout) -->
   <main class="main-wrapper">
 
-    <!-- Profile Header Section -->
-    <section class="profile-card glass-panel">
+    <!-- Profile Header 3D Floating Slab -->
+    <section class="profile-card glass-panel tilt-card">
       <!-- 3D Spinning Coin Container -->
       <div class="coin-container" id="coinContainer" title="แตะหรือคลิกเพื่อหมุนเหรียญ!">
         <div class="coin-aura"></div>
-        <div class="coin" id="coin">
-          <!-- Front Face -->
-          <div class="coin-face coin-front">
-            <div class="coin-bezel"></div>
-            <img src="profile.png" alt="Wave Profile" class="coin-img">
-            <div class="coin-glare"></div>
-          </div>
-          <!-- Back Face -->
-          <div class="coin-face coin-back">
-            <div class="coin-bezel"></div>
-            <img src="profile.png" alt="Wave Profile Back" class="coin-img">
-            <div class="coin-glare"></div>
+        <div class="coin-3d-scene">
+          <div class="coin" id="coin">
+            <!-- Physical 3D Coin Ribbed Thickness Edges -->
+            <div class="coin-edge coin-edge-1"></div>
+            <div class="coin-edge coin-edge-2"></div>
+            <div class="coin-edge coin-edge-3"></div>
+            <div class="coin-edge coin-edge-4"></div>
+            <div class="coin-edge coin-edge-5"></div>
+            
+            <!-- Front Face (Z +6px) -->
+            <div class="coin-face coin-front">
+              <div class="coin-bezel"></div>
+              <img src="profile.png" alt="Atthachai Panyasan" class="coin-img">
+              <div class="coin-glare"></div>
+            </div>
+            <!-- Back Face (Z -6px) -->
+            <div class="coin-face coin-back">
+              <div class="coin-bezel"></div>
+              <img src="profile.png" alt="Atthachai Panyasan Back" class="coin-img">
+              <div class="coin-glare"></div>
+            </div>
           </div>
         </div>
+
+        <!-- Dynamic 3D Floor Shadow -->
+        <div class="coin-floor-shadow"></div>
+
         <span class="coin-hint-badge">
-          <i class="fa-solid fa-sparkles"></i> แตะเพื่อ Spin!
+          <i class="fa-solid fa-sparkles"></i> 3D Spin!
         </span>
       </div>
 
       <!-- Profile Details -->
       <div class="profile-info">
         <h1 class="profile-name">
-          Wave Chatkawee
+          Atthachai panyasan
           <span class="verified-badge" title="Verified Creator">
             <i class="fa-solid fa-circle-check"></i>
           </span>
@@ -86,50 +99,52 @@
           ยินดีต้อนรับครับ! ติดตามไลฟ์สไตล์ หรือติดต่องานผ่านช่องทางด้านล่างนี้ได้เลย ✨
         </p>
 
-        <!-- Tags / Badges (งานอดิเรก & สไตล์) -->
+        <!-- Tags / Badges (งานอดิเรก & สไตล์ 3D Chips) -->
         <div class="tags-group">
-          <span class="tag-chip tag-highlight"><i class="fa-solid fa-gamepad"></i> เล่นเกม ROV / PES / Delta Force</span>
-          <span class="tag-chip"><i class="fa-solid fa-bolt"></i> Creator</span>
-          <span class="tag-chip"><i class="fa-solid fa-heart"></i> Friendly</span>
-          <span class="tag-chip"><i class="fa-solid fa-headphones"></i> Chill Vibes</span>
+          <span class="tag-chip tag-highlight 3d-chip"><i class="fa-solid fa-gamepad"></i> เล่นเกม ROV / PES / Delta Force</span>
+          <span class="tag-chip 3d-chip"><i class="fa-solid fa-bolt"></i> Creator</span>
+          <span class="tag-chip 3d-chip"><i class="fa-solid fa-heart"></i> Friendly</span>
+          <span class="tag-chip 3d-chip"><i class="fa-solid fa-headphones"></i> Chill Vibes</span>
         </div>
       </div>
     </section>
 
-    <!-- Favorite Song Section -->
+    <!-- Favorite Song Section (3D Holographic Music Card) -->
     <section class="section-container">
       <div class="section-title">
         <i class="fa-solid fa-compact-disc rotate-icon"></i>
         <h2>เพลงโปรดที่ชอบฟัง</h2>
       </div>
 
-      <a href="https://youtu.be/q2LcLDNvtx8?si=_yGx6vCBOvGt1L7F" target="_blank" rel="noopener noreferrer" class="link-card card-music" data-label="Favorite Music">
+      <a href="https://youtu.be/q2LcLDNvtx8?si=_yGx6vCBOvGt1L7F" target="_blank" rel="noopener noreferrer" class="link-card card-music tilt-card" data-label="Favorite Music">
         <div class="card-glow"></div>
         <div class="card-sheen"></div>
-        <div class="card-left">
-          <div class="icon-box music-disc-box">
-            <i class="fa-solid fa-music"></i>
-          </div>
-          <div class="card-text">
-            <div class="platform-with-eq">
-              <span class="card-platform">ไม่ใช่ไม่รัก - PORZAX</span>
-              <div class="equalizer music-eq">
-                <span class="eq-bar"></span>
-                <span class="eq-bar"></span>
-                <span class="eq-bar"></span>
-                <span class="eq-bar"></span>
-              </div>
+        <div class="card-depth-layer">
+          <div class="card-left">
+            <div class="icon-box music-disc-box 3d-icon">
+              <i class="fa-solid fa-music"></i>
             </div>
-            <span class="card-sub"><i class="fa-brands fa-youtube youtube-red"></i> แตะเพื่อเปิดฟังบน YouTube</span>
+            <div class="card-text">
+              <div class="platform-with-eq">
+                <span class="card-platform">ไม่ใช่ไม่รัก - PORZAX</span>
+                <div class="equalizer music-eq">
+                  <span class="eq-bar"></span>
+                  <span class="eq-bar"></span>
+                  <span class="eq-bar"></span>
+                  <span class="eq-bar"></span>
+                </div>
+              </div>
+              <span class="card-sub"><i class="fa-brands fa-youtube youtube-red"></i> แตะเพื่อฟังบน YouTube</span>
+            </div>
           </div>
-        </div>
-        <div class="card-right">
-          <span class="action-pill pill-music"><i class="fa-solid fa-play"></i> ฟังเพลง</span>
+          <div class="card-right">
+            <span class="action-pill pill-music 3d-touch-btn"><i class="fa-solid fa-play"></i> ฟังเพลง</span>
+          </div>
         </div>
       </a>
     </section>
 
-    <!-- Social Links Section (Permanent Neon Glow) -->
+    <!-- Social Links Section (Permanent Neon Glow + 3D Depth) -->
     <section class="section-container">
       <div class="section-title">
         <i class="fa-solid fa-link"></i>
@@ -139,129 +154,139 @@
       <div class="links-list">
 
         <!-- 1. Instagram -->
-        <a href="https://www.instagram.com/wxveatp_ii?stkn=Z2g3em5zNHRvNXoy" target="_blank" rel="noopener noreferrer" class="link-card card-instagram" data-label="Instagram">
+        <a href="https://www.instagram.com/wxveatp_ii?stkn=Z2g3em5zNHRvNXoy" target="_blank" rel="noopener noreferrer" class="link-card card-instagram tilt-card" data-label="Instagram">
           <div class="card-glow"></div>
           <div class="card-sheen"></div>
-          <div class="card-left">
-            <div class="icon-box">
-              <i class="fa-brands fa-instagram"></i>
+          <div class="card-depth-layer">
+            <div class="card-left">
+              <div class="icon-box 3d-icon">
+                <i class="fa-brands fa-instagram"></i>
+              </div>
+              <div class="card-text">
+                <span class="card-platform">Instagram</span>
+                <span class="card-sub">@wxveatp_ii • รูปภาพ & สตอรี่</span>
+              </div>
             </div>
-            <div class="card-text">
-              <span class="card-platform">Instagram</span>
-              <span class="card-sub">@wxveatp_ii • รูปภาพ & สตอรี่</span>
+            <div class="card-right">
+              <span class="action-pill 3d-touch-btn">ติดตาม <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
             </div>
-          </div>
-          <div class="card-right">
-            <span class="action-pill">ติดตาม <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
           </div>
         </a>
 
         <!-- 2. Facebook -->
-        <a href="https://www.facebook.com/share/19eEyeqqHi/" target="_blank" rel="noopener noreferrer" class="link-card card-facebook" data-label="Facebook">
+        <a href="https://www.facebook.com/share/19eEyeqqHi/" target="_blank" rel="noopener noreferrer" class="link-card card-facebook tilt-card" data-label="Facebook">
           <div class="card-glow"></div>
           <div class="card-sheen"></div>
-          <div class="card-left">
-            <div class="icon-box">
-              <i class="fa-brands fa-facebook-f"></i>
+          <div class="card-depth-layer">
+            <div class="card-left">
+              <div class="icon-box 3d-icon">
+                <i class="fa-brands fa-facebook-f"></i>
+              </div>
+              <div class="card-text">
+                <span class="card-platform">Facebook</span>
+                <span class="card-sub">Atthachai Panyasan • เฟซบุ๊กส่วนตัว</span>
+              </div>
             </div>
-            <div class="card-text">
-              <span class="card-platform">Facebook</span>
-              <span class="card-sub">Wave Chatkawee • เฟซบุ๊กส่วนตัว</span>
+            <div class="card-right">
+              <span class="action-pill 3d-touch-btn">เยี่ยมชม <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
             </div>
-          </div>
-          <div class="card-right">
-            <span class="action-pill">เยี่ยมชม <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
           </div>
         </a>
 
         <!-- 3. LINE -->
-        <a href="https://line.me/ti/p/Eu7Z7YJfiG" target="_blank" rel="noopener noreferrer" class="link-card card-line" data-label="LINE">
+        <a href="https://line.me/ti/p/Eu7Z7YJfiG" target="_blank" rel="noopener noreferrer" class="link-card card-line tilt-card" data-label="LINE">
           <div class="card-glow"></div>
           <div class="card-sheen"></div>
-          <div class="card-left">
-            <div class="icon-box">
-              <i class="fa-brands fa-line"></i>
+          <div class="card-depth-layer">
+            <div class="card-left">
+              <div class="icon-box 3d-icon">
+                <i class="fa-brands fa-line"></i>
+              </div>
+              <div class="card-text">
+                <span class="card-platform">LINE Chat</span>
+                <span class="card-sub">ทักแชทพูดคุย / ติดต่องานด่วน</span>
+              </div>
             </div>
-            <div class="card-text">
-              <span class="card-platform">LINE Chat</span>
-              <span class="card-sub">ทักแชทพูดคุย / ติดต่องานด่วน</span>
+            <div class="card-right">
+              <span class="action-pill 3d-touch-btn">เพิ่มเพื่อน <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
             </div>
-          </div>
-          <div class="card-right">
-            <span class="action-pill">เพิ่มเพื่อน <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
           </div>
         </a>
 
         <!-- 4. TikTok -->
-        <a href="https://www.tiktok.com/@wxveatp_ii" target="_blank" rel="noopener noreferrer" class="link-card card-tiktok" data-label="TikTok">
+        <a href="https://www.tiktok.com/@wxveatp_ii" target="_blank" rel="noopener noreferrer" class="link-card card-tiktok tilt-card" data-label="TikTok">
           <div class="card-glow"></div>
           <div class="card-sheen"></div>
-          <div class="card-left">
-            <div class="icon-box">
-              <i class="fa-brands fa-tiktok"></i>
-            </div>
-            <div class="card-text">
-              <div class="platform-with-eq">
-                <span class="card-platform">TikTok</span>
-                <div class="equalizer">
-                  <span class="eq-bar"></span>
-                  <span class="eq-bar"></span>
-                  <span class="eq-bar"></span>
-                  <span class="eq-bar"></span>
-                </div>
+          <div class="card-depth-layer">
+            <div class="card-left">
+              <div class="icon-box 3d-icon">
+                <i class="fa-brands fa-tiktok"></i>
               </div>
-              <span class="card-sub">@wxveatp_ii • วิดีโอสั้น & ไลฟ์สตรีม</span>
+              <div class="card-text">
+                <div class="platform-with-eq">
+                  <span class="card-platform">TikTok</span>
+                  <div class="equalizer">
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                  </div>
+                </div>
+                <span class="card-sub">@wxveatp_ii • วิดีโอสั้น & ไลฟ์สตรีม</span>
+              </div>
             </div>
-          </div>
-          <div class="card-right">
-            <span class="action-pill">รับชม <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+            <div class="card-right">
+              <span class="action-pill 3d-touch-btn">รับชม <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+            </div>
           </div>
         </a>
 
         <!-- 5. Email Contact (Click to Open / Copy) -->
-        <div class="link-card card-email" data-label="Email">
+        <div class="link-card card-email tilt-card" data-label="Email">
           <div class="card-glow"></div>
           <div class="card-sheen"></div>
-          <div class="card-left">
-            <div class="icon-box">
-              <i class="fa-solid fa-envelope"></i>
+          <div class="card-depth-layer">
+            <div class="card-left">
+              <div class="icon-box 3d-icon">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <div class="card-text">
+                <span class="card-platform">Email ติดต่องาน</span>
+                <span class="card-sub">27pam2541@gmail.com</span>
+              </div>
             </div>
-            <div class="card-text">
-              <span class="card-platform">Email ติดต่องาน</span>
-              <span class="card-sub">27pam2541@gmail.com</span>
+            <div class="card-right">
+              <button class="copy-icon-btn 3d-touch-btn" data-copy="27pam2541@gmail.com" data-type="อีเมล" aria-label="คัดลอกอีเมล">
+                <i class="fa-regular fa-copy"></i>
+                <span>คัดลอก</span>
+              </button>
             </div>
-          </div>
-          <div class="card-right">
-            <button class="copy-icon-btn" data-copy="27pam2541@gmail.com" data-type="อีเมล" aria-label="คัดลอกอีเมล">
-              <i class="fa-regular fa-copy"></i>
-              <span>คัดลอก</span>
-            </button>
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- Bank & Support Section (Quick Copy Cards) -->
+    <!-- Bank & Support Section (Quick Copy 3D Card) -->
     <section class="section-container">
       <div class="section-title">
         <i class="fa-solid fa-wallet"></i>
         <h2>การโอนเงิน & สนับสนุน</h2>
       </div>
 
-      <div class="banking-card glass-panel">
+      <div class="banking-card glass-panel tilt-card">
         <div class="card-sheen"></div>
 
         <!-- Bank Item 1: Bangkok Bank (BBL) -->
         <div class="bank-item">
           <div class="bank-header">
             <div class="bank-brand">
-              <div class="bank-badge-bbl">
+              <div class="bank-badge-bbl 3d-icon">
                 <i class="fa-solid fa-building-columns"></i>
               </div>
               <div class="bank-meta">
                 <span class="bank-name">ธนาคารกรุงเทพ (Bangkok Bank)</span>
-                <span class="bank-holder">ชื่อบัญชี: Chatkawee</span>
+                <span class="bank-holder">ชื่อบัญชี: Atthachai Panyasan</span>
               </div>
             </div>
           </div>
@@ -269,7 +294,7 @@
             <div class="number-display">
               <span class="digits">864-0-698604</span>
             </div>
-            <button class="quick-copy-btn btn-bbl" data-copy="8640698604" data-type="เลขบัญชีธนาคารกรุงเทพ">
+            <button class="quick-copy-btn btn-bbl 3d-touch-btn" data-copy="8640698604" data-type="เลขบัญชีธนาคารกรุงเทพ">
               <i class="fa-regular fa-copy"></i>
               <span>คัดลอกเลขบัญชี</span>
             </button>
@@ -282,7 +307,7 @@
         <div class="bank-item">
           <div class="bank-header">
             <div class="bank-brand">
-              <div class="bank-badge-pp">
+              <div class="bank-badge-pp 3d-icon">
                 <i class="fa-solid fa-qrcode"></i>
               </div>
               <div class="bank-meta">
@@ -295,7 +320,7 @@
             <div class="number-display">
               <span class="digits">065-340-3849</span>
             </div>
-            <button class="quick-copy-btn btn-promptpay" data-copy="0653403849" data-type="เบอร์พร้อมเพย์">
+            <button class="quick-copy-btn btn-promptpay 3d-touch-btn" data-copy="0653403849" data-type="เบอร์พร้อมเพย์">
               <i class="fa-regular fa-copy"></i>
               <span>คัดลอกพร้อมเพย์</span>
             </button>
@@ -307,13 +332,13 @@
 
     <!-- Footer -->
     <footer class="main-footer">
-      <p class="footer-tagline">Designed with <i class="fa-solid fa-heart beat"></i> for Wave Chatkawee</p>
+      <p class="footer-tagline">Designed with <i class="fa-solid fa-heart beat"></i> for Atthachai panyasan</p>
       <p class="footer-copy">© 2026 @wxveatp_ii • All Rights Reserved</p>
     </footer>
 
   </main>
 
-  <!-- Interactive Toast Notification -->
+  <!-- Interactive 3D Toast Notification -->
   <div class="toast-wrapper" id="toastWrapper">
     <div class="toast-card glass-panel" id="toastCard">
       <div class="toast-icon" id="toastIcon">
