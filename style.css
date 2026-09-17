@@ -66,7 +66,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 32px 16px 64px 16px;
+  padding: clamp(16px, 4vw, 28px) clamp(12px, 3vw, 16px) clamp(44px, 8vh, 64px);
   position: relative;
   overflow-x: hidden;
   perspective: 1000px;
@@ -473,15 +473,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 9px;
+  gap: 8px;
   flex-wrap: wrap;
   margin-bottom: 5px;
+  width: 100%;
 }
 
 .hero-name {
-  font-size: 1.8rem;
+  font-size: clamp(1.35rem, 5.2vw, 1.8rem);
   font-weight: 800;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  text-align: center;
+  word-break: break-word;
   background: linear-gradient(135deg, #ffffff 0%, #cbe5ff 35%, #f9a8d4 70%, #ffffff 100%);
   background-size: 250% auto;
   -webkit-background-clip: text;
@@ -497,7 +501,7 @@ body {
 }
 
 .hero-nickname {
-  font-size: 1.25rem;
+  font-size: clamp(0.95rem, 3.2vw, 1.15rem);
   font-weight: 700;
   padding: 3px 12px;
   border-radius: 12px;
@@ -533,23 +537,30 @@ body {
 /* Floating Cluster Tags */
 .tags-cluster {
   display: flex;
-  gap: 8px;
+  gap: 7px;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
 .tag-pill {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  padding: 6px 14px;
+  padding: 6px 12px;
   border-radius: 20px;
-  font-size: 0.78rem;
+  font-size: clamp(0.72rem, 2.4vw, 0.8rem);
   font-weight: 600;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
   transition: transform 0.2s ease;
+  max-width: 100%;
+  word-break: break-word;
+  text-align: center;
+  line-height: 1.35;
 }
 
 .tag-sky {
@@ -1304,57 +1315,113 @@ body {
 }
 
 /* ==========================================================
-   Mobile Specific Tuning
+   Mobile Specific Tuning (< 480px & < 380px)
    ========================================================== */
 @media (max-width: 480px) {
   body {
-    padding: 18px 12px 48px 12px;
+    padding: 16px 12px 48px 12px;
   }
   
   .profile-card-inner {
-    padding: 24px 16px 20px 16px;
-    border-radius: 28px;
+    padding: 22px 14px 18px 14px;
+    border-radius: 26px;
   }
   
   .avatar-3d-stage {
-    width: 116px;
-    height: 116px;
+    width: 120px;
+    height: 120px;
+  }
+
+  .avatar-orbit-ring.ring-outer {
+    width: 140px;
+    height: 140px;
+  }
+
+  .avatar-orbit-ring.ring-inner {
+    width: 125px;
+    height: 125px;
   }
   
   .hero-name {
-    font-size: 1.65rem;
+    font-size: clamp(1.25rem, 5.2vw, 1.55rem);
   }
   
   .hero-nickname {
-    font-size: 1.18rem;
+    font-size: 0.95rem;
+    padding: 2px 10px;
+  }
+
+  .bio-text {
+    font-size: 0.84rem;
+    margin-bottom: 14px;
   }
   
   .luxe-card {
-    padding: 16px 16px;
-    border-radius: 20px;
-  }
-  
-  .app-icon-box {
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
-  }
-  
-  .handle-title {
-    font-size: 1.02rem;
-  }
-  
-  .action-grid {
+    padding: 13px 14px;
+    border-radius: 18px;
     gap: 10px;
   }
   
+  .app-icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+  }
+
+  .app-svg {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .handle-title {
+    font-size: 0.92rem;
+  }
+
+  .handle-subtitle {
+    font-size: 0.72rem;
+  }
+  
+  .action-grid {
+    gap: 8px;
+  }
+  
   .glass-btn {
-    padding: 11px 12px;
-    font-size: 0.84rem;
+    padding: 10px 10px;
+    font-size: 0.82rem;
+    border-radius: 13px;
+    gap: 6px;
+  }
+
+  .card-chevron-btn {
+    width: 36px;
+    height: 36px;
   }
 
   .bank-accounts-grid {
     grid-template-columns: 1fr;
     gap: 8px;
+  }
+}
+
+@media (max-width: 380px) {
+  body {
+    padding: 12px 10px 40px 10px;
+  }
+
+  .hero-name {
+    font-size: 1.25rem;
+  }
+
+  .action-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tag-pill {
+    font-size: 0.7rem;
+    padding: 5px 9px;
+  }
+
+  .handle-title {
+    font-size: 0.86rem;
   }
 }
