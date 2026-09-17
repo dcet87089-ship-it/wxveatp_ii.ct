@@ -1,375 +1,471 @@
-/**
- * Modern Dark Glassmorphism 3D Luxe - Atthachai Panyasan Bio Links
- * app.js - Cosmic Stars, 3D Tilt, 3D Coin Boost, Confetti, Quick Copy & Haptics
- */
+/* ==========================================================
+   Chatkawee (Sky) - Ultra 3D Interactive Engine
+   Retina-Optimized, Mobile Gyroscope/Touch Parallax & Ripple
+   ========================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initStarsCanvas();
+  init3DTiltAndTouch();
+  initTouchRipples();
+  initCoinInteraction();
+  initConfettiCanvas();
+  initCopyActions();
+  initShareAction();
+});
 
-  /* ==========================================================================
-     1. Hardware-Accelerated Cosmic Mesh & Twinkling Starfield Canvas
-     ========================================================================== */
-  const cosmicCanvas = document.getElementById('cosmic-canvas');
-  const ctx = cosmicCanvas.getContext('2d');
+/* ==========================================================
+   3D Rotating Coin Tap / Flip Boost
+   ========================================================== */
+function initCoinInteraction() {
+  const coin = document.getElementById('avatar-coin');
+  if (!coin) return;
 
-  let width, height, dpr;
-  let stars = [];
-  const STAR_COUNT = 90;
+  let isFlipping = false;
+  coin.addEventListener('click', () => {
+    if (isFlipping) return;
+    isFlipping = true;
+    triggerHaptic([40, 60, 40]);
+    coin.classList.add('flip-boost');
+    launchConfetti();
 
-  function resizeCanvas() {
-    dpr = window.devicePixelRatio || 1;
-    width = window.innerWidth;
-    height = window.innerHeight;
-
-    cosmicCanvas.width = width * dpr;
-    cosmicCanvas.height = height * dpr;
-    ctx.scale(dpr, dpr);
-
-    initStars();
-  }
-
-  function initStars() {
-    stars = [];
-    for (let i = 0; i < STAR_COUNT; i++) {
-      stars.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        radius: Math.random() * 1.6 + 0.4,
-        alpha: Math.random() * 0.75 + 0.25,
-        speed: Math.random() * 0.35 + 0.1,
-        twinkleSpeed: Math.random() * 0.02 + 0.008,
-        color: ['#ffffff', '#a78bfa', '#38bdf8', '#f472b6', '#ffd700'][Math.floor(Math.random() * 5)]
-      });
-    }
-  }
-
-  function drawStars() {
-    ctx.clearRect(0, 0, width, height);
-
-    for (let star of stars) {
-      star.alpha += star.twinkleSpeed;
-      if (star.alpha > 0.95 || star.alpha < 0.2) {
-        star.twinkleSpeed = -star.twinkleSpeed;
-      }
-
-      star.y -= star.speed;
-      if (star.y < 0) {
-        star.y = height;
-        star.x = Math.random() * width;
-      }
-
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-      ctx.fillStyle = star.color;
-      ctx.globalAlpha = Math.max(0, Math.min(1, star.alpha));
-      ctx.shadowBlur = 8;
-      ctx.shadowColor = star.color;
-      ctx.fill();
-    }
-
-    ctx.globalAlpha = 1;
-    ctx.shadowBlur = 0;
-    requestAnimationFrame(drawStars);
-  }
-
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
-  requestAnimationFrame(drawStars);
-
-
-  /* ==========================================================================
-     2. High-Performance Confetti Burst System
-     ========================================================================== */
-  const confettiCanvas = document.getElementById('confetti-canvas');
-  const cCtx = confettiCanvas.getContext('2d');
-  let confettiList = [];
-  let confettiAnimFrame = null;
-
-  function resizeConfetti() {
-    confettiCanvas.width = window.innerWidth * (window.devicePixelRatio || 1);
-    confettiCanvas.height = window.innerHeight * (window.devicePixelRatio || 1);
-    cCtx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
-  }
-  window.addEventListener('resize', resizeConfetti);
-  resizeConfetti();
-
-  function triggerConfetti(originX, originY) {
-    const colors = ['#ffd700', '#00f2fe', '#ff007f', '#ffffff', '#a855f7', '#00ff87'];
-    const count = 60;
-
-    for (let i = 0; i < count; i++) {
-      const angle = (Math.PI * 2 / count) * i + (Math.random() - 0.5);
-      const velocity = Math.random() * 8 + 4;
-      confettiList.push({
-        x: originX,
-        y: originY,
-        vx: Math.cos(angle) * velocity,
-        vy: Math.sin(angle) * velocity - 3,
-        size: Math.random() * 6 + 4,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        rotation: Math.random() * 360,
-        rotationSpeed: (Math.random() - 0.5) * 14,
-        opacity: 1,
-        life: 0.98 + Math.random() * 0.015,
-        gravity: 0.22
-      });
-    }
-
-    if (!confettiAnimFrame) {
-      updateConfetti();
-    }
-  }
-
-  function updateConfetti() {
-    cCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-
-    for (let i = confettiList.length - 1; i >= 0; i--) {
-      const p = confettiList[i];
-      p.x += p.vx;
-      p.y += p.vy;
-      p.vy += p.gravity;
-      p.vx *= 0.98;
-      p.rotation += p.rotationSpeed;
-      p.opacity *= 0.97;
-
-      cCtx.save();
-      cCtx.translate(p.x, p.y);
-      cCtx.rotate((p.rotation * Math.PI) / 180);
-      cCtx.globalAlpha = Math.max(0, p.opacity);
-      cCtx.fillStyle = p.color;
-      cCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
-      cCtx.restore();
-
-      if (p.opacity < 0.03 || p.y > window.innerHeight) {
-        confettiList.splice(i, 1);
-      }
-    }
-
-    if (confettiList.length > 0) {
-      confettiAnimFrame = requestAnimationFrame(updateConfetti);
-    } else {
-      cCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-      confettiAnimFrame = null;
-    }
-  }
-
-
-  /* ==========================================================================
-     3. 3D Spinning Coin Interaction (Quick Flip Boost + Confetti)
-     ========================================================================== */
-  const coinContainer = document.getElementById('coinContainer');
-  const coin = document.getElementById('coin');
-  let isCoinBoosting = false;
-
-  coinContainer.addEventListener('click', (e) => {
-    if (isCoinBoosting) return;
-    isCoinBoosting = true;
-
-    // Haptic feedback
-    if (navigator.vibrate) {
-      navigator.vibrate([35, 45, 55]);
-    }
-
-    // Trigger rapid spin animation
-    coin.classList.remove('boost-flip');
-    void coin.offsetWidth;
-    coin.classList.add('boost-flip');
-
-    // Confetti explosion from center of coin
-    const rect = coinContainer.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    triggerConfetti(centerX, centerY);
-
-    // Reset back to gentle loop
     setTimeout(() => {
-      coin.classList.remove('boost-flip');
-      isCoinBoosting = false;
-    }, 1300);
+      coin.classList.remove('flip-boost');
+      isFlipping = false;
+    }, 1150);
   });
+}
 
+/* ==========================================================
+   Toast Notification System
+   ========================================================== */
+let toastTimer = null;
+function showToast(title, message, icon = '✨') {
+  const toast = document.getElementById('toast');
+  const toastTitle = document.getElementById('toast-title');
+  const toastMsg = document.getElementById('toast-message');
+  const toastIcon = toast.querySelector('.toast-icon');
 
-  /* ==========================================================================
-     4. Interactive 3D Card Tilt (Pointer & Touch Depth)
-     ========================================================================== */
-  const tiltCards = document.querySelectorAll('.tilt-card');
+  if (!toast) return;
 
-  tiltCards.forEach((card) => {
+  if (toastTitle) toastTitle.textContent = title;
+  if (toastMsg) toastMsg.textContent = message;
+  if (toastIcon) toastIcon.textContent = icon;
+
+  toast.classList.add('show');
+
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2800);
+}
+
+/* ==========================================================
+   Haptic Feedback
+   ========================================================== */
+function triggerHaptic(pattern = 25) {
+  if (navigator.vibrate) {
+    try {
+      navigator.vibrate(pattern);
+    } catch (e) {}
+  }
+}
+
+/* ==========================================================
+   Clipboard Helper
+   ========================================================== */
+async function copyToClipboard(text, title = 'คัดลอกสำเร็จ', message = 'คัดลอกลงคลิปบอร์ดแล้ว!') {
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+    } else {
+      const el = document.createElement('textarea');
+      el.value = text;
+      el.style.position = 'fixed';
+      el.style.left = '-999999px';
+      document.body.appendChild(el);
+      el.focus();
+      el.select();
+      document.execCommand('copy');
+      el.remove();
+    }
+    showToast(title, message, '📋');
+    triggerHaptic([35, 45, 35]);
+    launchConfetti();
+  } catch (err) {
+    showToast('ข้อผิดพลาด', 'ไม่สามารถคัดลอกอัตโนมัติได้: ' + text, '⚠️');
+  }
+}
+
+/* ==========================================================
+   Interactive 3D Tilt & Mobile Gyroscope Engine
+   ========================================================== */
+function init3DTiltAndTouch() {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+
+  const tiltCards = document.querySelectorAll('[data-tilt], .profile-card-3d');
+
+  // Mouse tilt for desktop
+  tiltCards.forEach(card => {
+    let bounds = null;
+
     function handleMove(clientX, clientY) {
-      const rect = card.getBoundingClientRect();
-      const x = clientX - rect.left;
-      const y = clientY - rect.top;
+      if (!bounds) bounds = card.getBoundingClientRect();
+      
+      const mouseX = clientX - bounds.left;
+      const mouseY = clientY - bounds.top;
 
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
+      const centerX = bounds.width / 2;
+      const centerY = bounds.height / 2;
 
-      // Calculate tilt angles (max 10deg)
-      const rotateX = ((y - centerY) / centerY) * -9;
-      const rotateY = ((x - centerX) / centerX) * 9;
+      const maxTilt = 8;
+      const tiltX = -((mouseY - centerY) / centerY) * maxTilt;
+      const tiltY = ((mouseX - centerX) / centerX) * maxTilt;
 
-      card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateZ(8px)`;
+      card.style.transform = `perspective(1000px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg) translateZ(6px)`;
+      card.style.setProperty('--mouse-x', `${mouseX}px`);
+      card.style.setProperty('--mouse-y', `${mouseY}px`);
     }
 
-    function resetTilt() {
-      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+    function handleReset() {
+      bounds = null;
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0)';
     }
 
-    // Pointer move (Mouse & Stylus)
-    card.addEventListener('pointermove', (e) => {
+    card.addEventListener('mouseenter', () => {
+      bounds = card.getBoundingClientRect();
+    });
+
+    card.addEventListener('mousemove', (e) => {
       handleMove(e.clientX, e.clientY);
     });
 
-    card.addEventListener('pointerleave', () => {
-      resetTilt();
-    });
-
-    // Touch events
-    card.addEventListener('touchmove', (e) => {
-      if (e.touches.length > 0) {
-        handleMove(e.touches[0].clientX, e.touches[0].clientY);
-      }
-    }, { passive: true });
-
-    card.addEventListener('touchend', () => {
-      setTimeout(resetTilt, 200);
-    });
+    card.addEventListener('mouseleave', handleReset);
   });
 
-  // Device orientation (Gentle 3D parallax on phones)
-  if (window.DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission !== 'function') {
+  // Mobile Device Orientation (Gyroscope Parallax)
+  if (window.DeviceOrientationEvent && typeof window.DeviceOrientationEvent.requestPermission !== 'function') {
     window.addEventListener('deviceorientation', (e) => {
-      if (e.gamma !== null && e.beta !== null) {
-        const tiltX = Math.min(Math.max(e.gamma, -20), 20) * 0.15;
-        const tiltY = Math.min(Math.max(e.beta - 45, -20), 20) * 0.15;
-        document.body.style.setProperty('--gyro-x', `${tiltX}px`);
-        document.body.style.setProperty('--gyro-y', `${tiltY}px`);
-      }
+      if (e.gamma === null || e.beta === null) return;
+      // Clamp gamma (-30 to 30) and beta (-30 to 30)
+      const tiltY = Math.max(-8, Math.min(8, (e.gamma / 30) * 8));
+      const tiltX = Math.max(-8, Math.min(8, ((e.beta - 45) / 30) * -8));
+
+      tiltCards.forEach(card => {
+        card.style.transform = `perspective(1000px) rotateX(${tiltX.toFixed(1)}deg) rotateY(${tiltY.toFixed(1)}deg)`;
+      });
     }, { passive: true });
   }
+}
 
+/* ==========================================================
+   Touch Ripple Effect for Tactile Mobile Feedback
+   ========================================================== */
+function initTouchRipples() {
+  const interactiveElements = document.querySelectorAll('.luxe-card, .glass-btn, .icon-circle-btn');
 
-  /* ==========================================================================
-     5. Quick Copy System & Toast Notifications
-     ========================================================================== */
-  const toastWrapper = document.getElementById('toastWrapper');
-  const toastTitle = document.getElementById('toastTitle');
-  const toastMessage = document.getElementById('toastMessage');
-  let toastTimer = null;
-
-  function showToast(title, message, isSuccess = true) {
-    if (toastTimer) clearTimeout(toastTimer);
-
-    toastTitle.textContent = title;
-    toastMessage.textContent = message;
-    toastWrapper.classList.add('show');
-
-    // Haptic vibration
-    if (navigator.vibrate) {
-      navigator.vibrate(isSuccess ? [30, 40] : [90]);
-    }
-
-    toastTimer = setTimeout(() => {
-      toastWrapper.classList.remove('show');
-    }, 2800);
-  }
-
-  async function copyToClipboard(text, typeLabel, buttonElement) {
-    try {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(text);
-      } else {
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        textArea.style.position = 'fixed';
-        textArea.style.opacity = '0';
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-      }
-
-      showToast('คัดลอกสำเร็จ! ✨', `คัดลอก${typeLabel} (${text}) เรียบร้อยแล้ว`);
-
-      if (buttonElement) {
-        const originalHTML = buttonElement.innerHTML;
-        buttonElement.innerHTML = `<i class="fa-solid fa-check"></i> <span>คัดลอกแล้ว!</span>`;
-        setTimeout(() => {
-          buttonElement.innerHTML = originalHTML;
-        }, 1800);
-      }
-    } catch (err) {
-      showToast('เกิดข้อผิดพลาด', 'ไม่สามารถคัดลอกได้ กรุณาลองใหม่อีกครั้ง', false);
-    }
-  }
-
-  // Attach to all copy buttons
-  document.querySelectorAll('[data-copy]').forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      e.preventDefault();
-      const textToCopy = btn.getAttribute('data-copy');
-      const typeLabel = btn.getAttribute('data-type') || 'ข้อมูล';
-      copyToClipboard(textToCopy, typeLabel, btn);
-    });
-  });
-
-
-  /* ==========================================================================
-     6. Web Share API & Profile Share Button
-     ========================================================================== */
-  const shareBtn = document.getElementById('shareBtn');
-  if (shareBtn) {
-    shareBtn.addEventListener('click', async () => {
-      const shareData = {
-        title: 'Atthachai Panyasan | Bio Links & Portfolio',
-        text: 'ติดตามโปรไฟล์และช่องทางติดต่อของ Atthachai Panyasan (@wxveatp_ii) ✨',
-        url: window.location.href
-      };
-
-      if (navigator.share) {
-        try {
-          await navigator.share(shareData);
-          showToast('แชร์สำเร็จ 🚀', 'ขอบคุณที่ร่วมแชร์โปรไฟล์ครับ!');
-        } catch (err) {
-          if (err.name !== 'AbortError') {
-            fallbackShare();
-          }
-        }
-      } else {
-        fallbackShare();
-      }
-    });
-  }
-
-  function fallbackShare() {
-    copyToClipboard(window.location.href, 'ลิงก์โปรไฟล์', null);
-  }
-
-
-  /* ==========================================================================
-     7. Mobile Touch Ripple Effect
-     ========================================================================== */
-  const rippleTargets = document.querySelectorAll('.link-card, .quick-copy-btn, .icon-btn');
-  rippleTargets.forEach((card) => {
-    card.addEventListener('pointerdown', function (e) {
-      const rect = card.getBoundingClientRect();
+  interactiveElements.forEach(el => {
+    el.addEventListener('pointerdown', (e) => {
+      triggerHaptic(20);
+      const rect = el.getBoundingClientRect();
       const ripple = document.createElement('span');
-      ripple.classList.add('ripple-wave');
-
-      const size = Math.max(rect.width, rect.height);
+      const size = Math.max(rect.width, rect.height) * 1.5;
       const x = e.clientX - rect.left - size / 2;
       const y = e.clientY - rect.top - size / 2;
 
-      ripple.style.width = ripple.style.height = `${size}px`;
-      ripple.style.left = `${x}px`;
-      ripple.style.top = `${y}px`;
+      ripple.style.cssText = `
+        position: absolute;
+        width: ${size}px;
+        height: ${size}px;
+        top: ${y}px;
+        left: ${x}px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.35) 0%, transparent 70%);
+        pointer-events: none;
+        transform: scale(0);
+        opacity: 1;
+        transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+        z-index: 10;
+      `;
 
-      card.appendChild(ripple);
+      el.style.position = el.style.position || 'relative';
+      el.appendChild(ripple);
 
-      setTimeout(() => {
-        ripple.remove();
-      }, 650);
+      requestAnimationFrame(() => {
+        ripple.style.transform = 'scale(1)';
+        ripple.style.opacity = '0';
+      });
+
+      setTimeout(() => ripple.remove(), 550);
     });
   });
+}
 
-});
+/* ==========================================================
+   Share Profile Action
+   ========================================================== */
+function initShareAction() {
+  const shareBtn = document.getElementById('header-share-btn');
+  if (!shareBtn) return;
+
+  shareBtn.addEventListener('click', async () => {
+    triggerHaptic(35);
+    const shareUrl = window.location.href.split('?')[0];
+    const shareData = {
+      title: 'Atthachai panyasan - Official Links',
+      text: 'ช่องทางการติดต่อและโซเชียลมีเดียของ Atthachai panyasan (@wxveatp_ii) ✨',
+      url: shareUrl
+    };
+
+    if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+      try {
+        await navigator.share(shareData);
+        launchConfetti();
+      } catch (err) {
+        if (err.name !== 'AbortError') {
+          copyToClipboard(shareUrl, 'คัดลอกลิงก์โปรไฟล์', 'ส่งต่อให้เพื่อนได้ทันที ✨');
+        }
+      }
+    } else {
+      copyToClipboard(shareUrl, 'คัดลอกลิงก์โปรไฟล์', 'ส่งต่อให้เพื่อนได้ทันที ✨');
+    }
+  });
+}
+
+/* ==========================================================
+   Copy Email Actions & Banking
+   ========================================================== */
+function initCopyActions() {
+  const targetEmail = '27pam2541@gmail.com';
+
+  const quickCopyBtn = document.getElementById('quick-copy-email-btn');
+  if (quickCopyBtn) {
+    quickCopyBtn.addEventListener('click', () => {
+      copyToClipboard(targetEmail, 'คัดลอกอีเมลเรียบร้อย', targetEmail);
+    });
+  }
+
+  const cardCopyBtn = document.getElementById('card-copy-btn');
+  if (cardCopyBtn) {
+    cardCopyBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      copyToClipboard(targetEmail, 'คัดลอกอีเมลเรียบร้อย', targetEmail);
+    });
+  }
+
+  const emailCard = document.getElementById('email-card');
+  if (emailCard) {
+    emailCard.addEventListener('click', () => {
+      copyToClipboard(targetEmail, 'คัดลอกอีเมลเรียบร้อย', targetEmail);
+    });
+  }
+
+  // Bangkok Bank Account Copy
+  const bblBtn = document.getElementById('copy-bbl-btn');
+  if (bblBtn) {
+    bblBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      copyToClipboard('8640698604', 'คัดลอกบัญชีธนาคารกรุงเทพเรียบร้อย', '864-0-698604 (ธนาคารกรุงเทพ)');
+    });
+  }
+
+  // PromptPay Copy
+  const promptpayBtn = document.getElementById('copy-promptpay-btn');
+  if (promptpayBtn) {
+    promptpayBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      copyToClipboard('0653403849', 'คัดลอกเบอร์พร้อมเพย์เรียบร้อย', '065-340-3849 (พร้อมเพย์)');
+    });
+  }
+}
+
+/* ==========================================================
+   Retina-Scaled Star Constellations Canvas Engine
+   ========================================================== */
+function initStarsCanvas() {
+  const canvas = document.getElementById('stars-canvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  let width = 0;
+  let height = 0;
+  let stars = [];
+  const STAR_COUNT = 40;
+
+  function resize() {
+    const dpr = window.devicePixelRatio || 1;
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    ctx.scale(dpr, dpr);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+
+  class Star {
+    constructor() {
+      this.init();
+    }
+
+    init() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.radius = Math.random() * 1.8 + 0.5;
+      this.vx = (Math.random() - 0.5) * 0.3;
+      this.vy = (Math.random() - 0.5) * 0.3;
+      this.alpha = Math.random() * 0.7 + 0.2;
+      this.twinkleSpeed = 0.02 * Math.random() + 0.01;
+      this.color = Math.random() > 0.4 ? 'rgba(56, 189, 248,' : 'rgba(236, 72, 153,';
+    }
+
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+
+      if (this.x < 0) this.x = width;
+      if (this.x > width) this.x = 0;
+      if (this.y < 0) this.y = height;
+      if (this.y > height) this.y = 0;
+
+      this.alpha += Math.sin(Date.now() * this.twinkleSpeed) * 0.01;
+      if (this.alpha < 0.15) this.alpha = 0.15;
+      if (this.alpha > 0.85) this.alpha = 0.85;
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `${this.color} ${this.alpha})`;
+      ctx.shadowBlur = 6;
+      ctx.shadowColor = '#38bdf8';
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+  }
+
+  for (let i = 0; i < STAR_COUNT; i++) {
+    stars.push(new Star());
+  }
+
+  function loop() {
+    ctx.clearRect(0, 0, width, height);
+
+    for (let i = 0; i < stars.length; i++) {
+      for (let j = i + 1; j < stars.length; j++) {
+        const dx = stars[i].x - stars[j].x;
+        const dy = stars[i].y - stars[j].y;
+        const dist = Math.hypot(dx, dy);
+
+        if (dist < 100) {
+          ctx.beginPath();
+          ctx.moveTo(stars[i].x, stars[i].y);
+          ctx.lineTo(stars[j].x, stars[j].y);
+          const lineAlpha = (1 - dist / 100) * 0.09;
+          ctx.strokeStyle = `rgba(148, 163, 184, ${lineAlpha})`;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+    }
+
+    stars.forEach(s => {
+      s.update();
+      s.draw();
+    });
+
+    requestAnimationFrame(loop);
+  }
+
+  loop();
+}
+
+/* ==========================================================
+   Retina-Scaled Confetti Burst Engine
+   ========================================================== */
+let confettiParticles = [];
+let confettiRunning = false;
+
+function initConfettiCanvas() {
+  const canvas = document.getElementById('confetti-canvas');
+  if (!canvas) return;
+
+  function resize() {
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    canvas.style.width = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+    const ctx = canvas.getContext('2d');
+    ctx.scale(dpr, dpr);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  const colors = ['#38bdf8', '#ec4899', '#a855f7', '#facc15', '#4ade80'];
+  const count = 45;
+
+  for (let i = 0; i < count; i++) {
+    confettiParticles.push({
+      x: window.innerWidth / 2,
+      y: window.innerHeight * 0.6,
+      w: Math.random() * 8 + 4,
+      h: Math.random() * 6 + 3,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      vx: (Math.random() - 0.5) * 14,
+      vy: (Math.random() - 0.7) * 16,
+      rot: Math.random() * 360,
+      rotSpeed: (Math.random() - 0.5) * 14,
+      alpha: 1,
+      gravity: 0.35
+    });
+  }
+
+  if (!confettiRunning) {
+    confettiRunning = true;
+    animateConfetti(ctx, canvas);
+  }
+}
+
+function animateConfetti(ctx, canvas) {
+  ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+  for (let i = confettiParticles.length - 1; i >= 0; i--) {
+    const p = confettiParticles[i];
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += p.gravity;
+    p.rot += p.rotSpeed;
+    p.alpha -= 0.015;
+
+    if (p.alpha <= 0 || p.y > window.innerHeight) {
+      confettiParticles.splice(i, 1);
+      continue;
+    }
+
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate((p.rot * Math.PI) / 180);
+    ctx.globalAlpha = p.alpha;
+    ctx.fillStyle = p.color;
+    ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+    ctx.restore();
+  }
+
+  if (confettiParticles.length > 0) {
+    requestAnimationFrame(() => animateConfetti(ctx, canvas));
+  } else {
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    confettiRunning = false;
+  }
+}

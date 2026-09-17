@@ -3,355 +3,434 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <meta name="theme-color" content="#07070d">
-  <title>Atthachai Panyasan | Bio Links & Portfolio</title>
-  <meta name="description" content="โปรไฟล์และช่องทางติดต่อของ Atthachai Panyasan (@wxveatp_ii) รวมลิงก์โซเชียลมีเดียและข้อมูลการติดต่อ">
   
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="profile.png">
-  <link rel="apple-touch-icon" href="profile.png">
+  <!-- Aggressive cache buster for mobile browsers -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  
+  <title>Atthachai panyasan ✨ Official Profile & Links</title>
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Atthachai panyasan | Official Links">
+  <meta property="og:description" content="รวมทุกช่องทางการติดตามและติดต่อของ Atthachai panyasan (@wxveatp_ii) - Email, Instagram, Facebook, LINE, TikTok">
+  <meta property="og:image" content="profile.png?v=luxe5">
+  <meta property="og:type" content="profile">
+  <meta name="theme-color" content="#020617">
 
-  <!-- Google Fonts: Prompt & Plus Jakarta Sans -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- FontAwesome 6 Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-  <!-- Stylesheet with Cache Busting -->
-  <link rel="stylesheet" href="style.css?v=3.0">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css?v=luxe5">
 </head>
 <body>
-
-  <!-- Background Particle & Stars Canvas -->
-  <canvas id="cosmic-canvas"></canvas>
+  <!-- Ambient Cosmic & Aurora Mesh Backdrop (Hardware Accelerated) -->
+  <div class="cosmic-mesh"></div>
+  <div class="cyber-grid"></div>
+  <canvas id="stars-canvas"></canvas>
   <canvas id="confetti-canvas"></canvas>
 
-  <!-- Ambient 3D Light Orbs -->
-  <div class="ambient-glow glow-1"></div>
-  <div class="ambient-glow glow-2"></div>
-  <div class="ambient-glow glow-3"></div>
+  <main class="page-container">
+    
+    <!-- 3D Holographic Profile Header -->
+    <header class="profile-card-3d" id="profile-card">
+      <div class="profile-card-inner">
+        
+        <!-- Ambient Card Glow Background -->
+        <div class="card-aura"></div>
+        <div class="shine-overlay"></div>
 
-  <!-- Top Floating 3D Action Bar -->
-  <header class="top-nav">
-    <div class="brand-pill 3d-float-badge">
-      <span class="live-dot"></span>
-      <span>ONLINE NOW</span>
-    </div>
-    <button class="icon-btn share-trigger 3d-touch-btn" id="shareBtn" aria-label="แชร์โปรไฟล์">
-      <i class="fa-solid fa-arrow-up-from-bracket"></i>
-      <span>แชร์</span>
-    </button>
-  </header>
+        <!-- Top Banner Status -->
+        <div class="header-top-banner">
+          <span class="location-badge">
+            <span class="flag-icon">📍</span> Thailand • Official
+          </span>
+          <div class="pulse-online">
+            <span class="pulse-ring"></span>
+            <span class="pulse-core"></span>
+            <span class="pulse-label">ONLINE</span>
+          </div>
+        </div>
 
-  <!-- Main Container (Mobile-First 3D Luxe Layout) -->
-  <main class="main-wrapper">
-
-    <!-- Profile Header 3D Floating Slab -->
-    <section class="profile-card glass-panel tilt-card">
-      <!-- 3D Spinning Coin Container -->
-      <div class="coin-container" id="coinContainer" title="แตะหรือคลิกเพื่อหมุนเหรียญ!">
-        <div class="coin-aura"></div>
-        <div class="coin-3d-scene">
-          <div class="coin" id="coin">
-            <!-- Physical 3D Coin Ribbed Thickness Edges -->
-            <div class="coin-edge coin-edge-1"></div>
-            <div class="coin-edge coin-edge-2"></div>
-            <div class="coin-edge coin-edge-3"></div>
-            <div class="coin-edge coin-edge-4"></div>
-            <div class="coin-edge coin-edge-5"></div>
-            
-            <!-- Front Face (Z +6px) -->
+        <!-- 3D Spinning Coin Avatar Stage -->
+        <div class="avatar-3d-stage">
+          <div class="avatar-ambient-glow"></div>
+          <div class="avatar-orbit-ring ring-outer"></div>
+          <div class="avatar-orbit-ring ring-inner"></div>
+          
+          <!-- Dual-Sided 3D Rotating Coin -->
+          <div class="avatar-coin" id="avatar-coin" role="button" tabindex="0" title="แตะเพื่อหมุนเหรียญ 3D">
+            <!-- Front Face: Profile Image -->
             <div class="coin-face coin-front">
               <div class="coin-bezel"></div>
-              <img src="profile.png" alt="Atthachai Panyasan" class="coin-img">
+              <img src="profile.png?v=luxe5" alt="Atthachai panyasan" class="avatar-img" id="avatar-image">
               <div class="coin-glare"></div>
             </div>
-            <!-- Back Face (Z -6px) -->
+            
+            <!-- Back Face: Profile Image -->
             <div class="coin-face coin-back">
               <div class="coin-bezel"></div>
-              <img src="profile.png" alt="Atthachai Panyasan Back" class="coin-img">
+              <img src="profile.png?v=luxe5" alt="Atthachai panyasan" class="avatar-img">
               <div class="coin-glare"></div>
             </div>
           </div>
+
+          <div class="avatar-sparkle sparkle-1">✦</div>
+          <div class="avatar-sparkle sparkle-2">★</div>
         </div>
 
-        <!-- Dynamic 3D Floor Shadow -->
-        <div class="coin-floor-shadow"></div>
+        <!-- Identity & Metallic Shimmer Typography -->
+        <div class="identity-block">
+          <div class="name-row">
+            <h1 class="hero-name">Atthachai panyasan</h1>
+            <span class="hero-nickname">Wave</span>
+            <span class="verified-3d" title="Verified Official">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+                <circle cx="12" cy="12" r="11" fill="url(#verified-grad)"/>
+                <path d="M7.5 12.3L10.5 15.3L16.5 9.3" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <defs>
+                  <linearGradient id="verified-grad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#38bdf8"/>
+                    <stop offset="1" stop-color="#2563eb"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </span>
+          </div>
+          
+          <div class="username-pill">@wxveatp_ii</div>
+          
+          <p class="bio-text">
+            ยินดีต้อนรับครับ! ติดตามไลฟ์สไตล์ ทักทาย หรือติดต่องานผ่านช่องทางด้านล่างนี้ได้เลย ✨
+          </p>
 
-        <span class="coin-hint-badge">
-          <i class="fa-solid fa-sparkles"></i> 3D Spin!
-        </span>
+          <!-- Floating Badges / Tags -->
+          <div class="tags-cluster">
+            <span class="tag-pill tag-sky">
+              <span class="tag-icon">🎮</span> เล่นเกม ROV / PES / Delta Force
+            </span>
+            <span class="tag-pill tag-neon">
+              <span class="tag-icon">⚡</span> Creator
+            </span>
+            <span class="tag-pill tag-purple">
+              <span class="tag-icon">💬</span> Friendly
+            </span>
+          </div>
+        </div>
+
+        <!-- Header Quick Action Buttons -->
+        <div class="header-action-group">
+          <button class="glass-btn btn-share" id="header-share-btn">
+            <div class="btn-shine"></div>
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+            <span>แชร์โปรไฟล์</span>
+          </button>
+          
+          <button class="glass-btn btn-email" id="quick-copy-email-btn">
+            <div class="btn-shine"></div>
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>คัดลอกอีเมล</span>
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- App Cards Section (Ordered as requested: เมล > ไอจี > เฟส > ไลน์ > ตต) -->
+    <section class="links-board">
+      <div class="board-header">
+        <div class="header-deco-line"></div>
+        <span class="board-title">OFFICIAL PLATFORMS</span>
+        <div class="header-deco-line"></div>
       </div>
 
-      <!-- Profile Details -->
-      <div class="profile-info">
-        <h1 class="profile-name">
-          Atthachai panyasan
-          <span class="verified-badge" title="Verified Creator">
-            <i class="fa-solid fa-circle-check"></i>
-          </span>
-        </h1>
-        <p class="profile-handle">@wxveatp_ii</p>
+      <!-- 1. เมล (EMAIL / WORK LUXE 3D CARD) -->
+      <div class="luxe-card email-theme" id="email-card" data-tilt role="button" tabindex="0">
+        <div class="card-ambient-bg"></div>
+        <div class="card-specular-light"></div>
+        <div class="card-sheen-sweep"></div>
 
-        <p class="profile-bio">
-          ยินดีต้อนรับครับ! ติดตามไลฟ์สไตล์ หรือติดต่องานผ่านช่องทางด้านล่างนี้ได้เลย ✨
-        </p>
+        <div class="card-main">
+          <div class="app-icon-box">
+            <div class="icon-glow-shadow"></div>
+            <svg class="app-svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L12 9.573l8.073-6.08c1.618-1.214 3.927-.059 3.927 1.964z"/>
+            </svg>
+          </div>
+          
+          <div class="card-texts">
+            <div class="tag-row">
+              <span class="platform-name">EMAIL / ติดต่องาน</span>
+              <span class="badge-pill email-badge">OFFICIAL</span>
+            </div>
+            <div class="handle-title">27pam2541@gmail.com</div>
+            <div class="handle-subtitle">ส่งอีเมลหรือกดคัดลอกด้านขวา ✉️</div>
+          </div>
+        </div>
 
-        <!-- Tags / Badges (งานอดิเรก & สไตล์ 3D Chips) -->
-        <div class="tags-group">
-          <span class="tag-chip tag-highlight 3d-chip"><i class="fa-solid fa-gamepad"></i> เล่นเกม ROV / PES / Delta Force</span>
-          <span class="tag-chip 3d-chip"><i class="fa-solid fa-bolt"></i> Creator</span>
-          <span class="tag-chip 3d-chip"><i class="fa-solid fa-heart"></i> Friendly</span>
-          <span class="tag-chip 3d-chip"><i class="fa-solid fa-headphones"></i> Chill Vibes</span>
+        <div class="email-btn-group">
+          <a href="mailto:27pam2541@gmail.com" class="icon-circle-btn" title="ส่งอีเมลทันที" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </a>
+          <button class="icon-circle-btn copy-glow-btn" id="card-copy-btn" title="คัดลอกอีเมล" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </button>
         </div>
       </div>
-    </section>
 
-    <!-- Favorite Song Section (3D Holographic Music Card) -->
-    <section class="section-container">
-      <div class="section-title">
-        <i class="fa-solid fa-compact-disc rotate-icon"></i>
-        <h2>เพลงโปรดที่ชอบฟัง</h2>
-      </div>
+      <!-- 2. ไอจี (INSTAGRAM LUXE 3D CARD) -->
+      <a href="https://www.instagram.com/wxveatp_ii?stkn=Z2g3em5zNHRvNXoy" target="_blank" rel="noopener noreferrer" class="luxe-card ig-theme" data-tilt>
+        <div class="card-ambient-bg"></div>
+        <div class="card-specular-light"></div>
+        <div class="card-sheen-sweep"></div>
+        
+        <div class="card-main">
+          <div class="app-icon-box">
+            <div class="icon-glow-shadow"></div>
+            <svg class="app-svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </div>
+          
+          <div class="card-texts">
+            <div class="tag-row">
+              <span class="platform-name">INSTAGRAM</span>
+              <span class="badge-pill ig-badge">FOLLOW</span>
+            </div>
+            <div class="handle-title">@wxveatp_ii</div>
+            <div class="handle-subtitle">รูปภาพ สตอรี่ และโมเมนต์ไลฟ์สไตล์ 📸</div>
+          </div>
+        </div>
 
-      <a href="https://youtu.be/q2LcLDNvtx8?si=_yGx6vCBOvGt1L7F" target="_blank" rel="noopener noreferrer" class="link-card card-music tilt-card" data-label="Favorite Music">
-        <div class="card-glow"></div>
-        <div class="card-sheen"></div>
-        <div class="card-depth-layer">
-          <div class="card-left">
-            <div class="icon-box music-disc-box 3d-icon">
-              <i class="fa-solid fa-music"></i>
-            </div>
-            <div class="card-text">
-              <div class="platform-with-eq">
-                <span class="card-platform">ไม่ใช่ไม่รัก - PORZAX</span>
-                <div class="equalizer music-eq">
-                  <span class="eq-bar"></span>
-                  <span class="eq-bar"></span>
-                  <span class="eq-bar"></span>
-                  <span class="eq-bar"></span>
-                </div>
-              </div>
-              <span class="card-sub"><i class="fa-brands fa-youtube youtube-red"></i> แตะเพื่อฟังบน YouTube</span>
-            </div>
-          </div>
-          <div class="card-right">
-            <span class="action-pill pill-music 3d-touch-btn"><i class="fa-solid fa-play"></i> ฟังเพลง</span>
-          </div>
+        <div class="card-chevron-btn">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
         </div>
       </a>
-    </section>
 
-    <!-- Social Links Section (Permanent Neon Glow + 3D Depth) -->
-    <section class="section-container">
-      <div class="section-title">
-        <i class="fa-solid fa-link"></i>
-        <h2>ช่องทางโซเชียลมีเดีย</h2>
-      </div>
+      <!-- 3. เฟส (FACEBOOK LUXE 3D CARD) -->
+      <a href="https://www.facebook.com/share/19eEyeqqHi/" target="_blank" rel="noopener noreferrer" class="luxe-card fb-theme" data-tilt>
+        <div class="card-ambient-bg"></div>
+        <div class="card-specular-light"></div>
+        <div class="card-sheen-sweep"></div>
 
-      <div class="links-list">
+        <div class="card-main">
+          <div class="app-icon-box">
+            <div class="icon-glow-shadow"></div>
+            <svg class="app-svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </div>
+          
+          <div class="card-texts">
+            <div class="tag-row">
+              <span class="platform-name">FACEBOOK</span>
+              <span class="badge-pill fb-badge">CONNECT</span>
+            </div>
+            <div class="handle-title">Atthachai Panyasan</div>
+            <div class="handle-subtitle">พูดคุย ทักทาย อัปเดตเรื่องราวต่างๆ 💙</div>
+          </div>
+        </div>
 
-        <!-- 1. Instagram -->
-        <a href="https://www.instagram.com/wxveatp_ii?stkn=Z2g3em5zNHRvNXoy" target="_blank" rel="noopener noreferrer" class="link-card card-instagram tilt-card" data-label="Instagram">
-          <div class="card-glow"></div>
-          <div class="card-sheen"></div>
-          <div class="card-depth-layer">
-            <div class="card-left">
-              <div class="icon-box 3d-icon">
-                <i class="fa-brands fa-instagram"></i>
-              </div>
-              <div class="card-text">
-                <span class="card-platform">Instagram</span>
-                <span class="card-sub">@wxveatp_ii • รูปภาพ & สตอรี่</span>
+        <div class="card-chevron-btn">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+        </div>
+      </a>
+
+      <!-- 4. ไลน์ (LINE LUXE 3D CARD) -->
+      <a href="https://line.me/ti/p/Eu7Z7YJfiG" target="_blank" rel="noopener noreferrer" class="luxe-card line-theme" data-tilt>
+        <div class="card-ambient-bg"></div>
+        <div class="card-specular-light"></div>
+        <div class="card-sheen-sweep"></div>
+
+        <div class="card-main">
+          <div class="app-icon-box">
+            <div class="icon-glow-shadow"></div>
+            <svg class="app-svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.019 9.585.39.084.922.258 1.057.592.12.302.079.774.038 1.08l-.164 1.026c-.053.308-.242 1.223 1.054.672 1.297-.551 7.004-4.125 9.554-7.062 1.733-1.924 2.442-3.864 2.442-5.893z"/>
+            </svg>
+          </div>
+          
+          <div class="card-texts">
+            <div class="tag-row">
+              <span class="platform-name">LINE CHAT</span>
+              <span class="badge-pill line-badge">FRIEND</span>
+            </div>
+            <div class="handle-title">เพิ่มเพื่อน LINE</div>
+            <div class="handle-subtitle">ทักแชทพูดคุย ปรึกษา หรือติดต่องานด่วน 💬</div>
+          </div>
+        </div>
+
+        <div class="card-chevron-btn">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+        </div>
+      </a>
+
+      <!-- 5. ตต (TIKTOK LUXE 3D CARD WITH EQUALIZER) -->
+      <a href="https://www.tiktok.com/@wxveatp_ii" target="_blank" rel="noopener noreferrer" class="luxe-card tiktok-theme" data-tilt>
+        <div class="card-ambient-bg"></div>
+        <div class="card-specular-light"></div>
+        <div class="card-sheen-sweep"></div>
+
+        <div class="card-main">
+          <div class="app-icon-box">
+            <div class="icon-glow-shadow"></div>
+            <svg class="app-svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 2.89 3.5 2.74 1.13-.01 2.21-.57 2.82-1.52.27-.45.41-.97.42-1.5.03-3.68.01-7.36.01-11.04V.02z"/>
+            </svg>
+          </div>
+          
+          <div class="card-texts">
+            <div class="tag-row">
+              <span class="platform-name">TIKTOK</span>
+              <div class="music-equalizer">
+                <span></span><span></span><span></span><span></span>
               </div>
             </div>
-            <div class="card-right">
-              <span class="action-pill 3d-touch-btn">ติดตาม <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+            <div class="handle-title">@wxveatp_ii</div>
+            <div class="handle-subtitle">คลิปสั้น วิดีโอสนุกๆ และคอนเทนต์ 🎵</div>
+          </div>
+        </div>
+
+        <div class="card-chevron-btn">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+        </div>
+      </a>
+
+      <!-- 6. FAVORITE SONG CARD (ไม่ใช่ไม่รัก - PORZAX) -->
+      <a href="https://youtu.be/q2LcLDNvtx8?si=_yGx6vCBOvGt1L7F" target="_blank" rel="noopener noreferrer" class="luxe-card music-theme" data-tilt>
+        <div class="card-ambient-bg"></div>
+        <div class="card-specular-light"></div>
+        <div class="card-sheen-sweep"></div>
+
+        <div class="card-main">
+          <div class="app-icon-box music-spin-box">
+            <div class="icon-glow-shadow"></div>
+            <svg class="app-svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+            </svg>
+          </div>
+          
+          <div class="card-texts">
+            <div class="tag-row">
+              <span class="platform-name">FAVORITE SONG</span>
+              <span class="badge-pill music-badge">YOUTUBE</span>
+            </div>
+            <div class="handle-title">ไม่ใช่ไม่รัก - PORZAX</div>
+            <div class="handle-subtitle">เพลงโปรดที่ฟังบ่อย แตะเพื่อเปิดฟัง 🎧</div>
+          </div>
+        </div>
+
+        <div class="card-chevron-btn">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+        </div>
+      </a>
+
+      <!-- 7. BANKING & TRANSFER (BANGKOK BANK & PROMPTPAY) -->
+      <div class="luxe-card bank-theme" id="bank-card" data-tilt>
+        <div class="card-ambient-bg"></div>
+        <div class="card-specular-light"></div>
+        <div class="card-sheen-sweep"></div>
+
+        <div class="card-main bank-card-main">
+          <div class="bank-top-row">
+            <div class="app-icon-box bank-icon-box">
+              <div class="icon-glow-shadow"></div>
+              <svg class="app-svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.5 1L2 6v2h19V6L11.5 1zm-7 8v8h3V9h-3zm6 0v8h3V9h-3zm6 0v8h3V9h-3zM2 19v2h19v-2H2z"/>
+              </svg>
+            </div>
+            
+            <div class="card-texts">
+              <div class="tag-row">
+                <span class="platform-name">BANGKOK BANK</span>
+                <span class="badge-pill bbl-badge">ธนาคารกรุงเทพ</span>
+              </div>
+              <div class="handle-title">บัญชี & พร้อมเพย์</div>
+              <div class="handle-subtitle">ชื่อบัญชี: Atthachai Panyasan 💸</div>
             </div>
           </div>
-        </a>
 
-        <!-- 2. Facebook -->
-        <a href="https://www.facebook.com/share/19eEyeqqHi/" target="_blank" rel="noopener noreferrer" class="link-card card-facebook tilt-card" data-label="Facebook">
-          <div class="card-glow"></div>
-          <div class="card-sheen"></div>
-          <div class="card-depth-layer">
-            <div class="card-left">
-              <div class="icon-box 3d-icon">
-                <i class="fa-brands fa-facebook-f"></i>
+          <!-- Account Items Grid -->
+          <div class="bank-accounts-grid">
+            <!-- Account 1: BBL Bank Account -->
+            <div class="bank-item" id="copy-bbl-btn" role="button" tabindex="0" title="แตะเพื่อคัดลอกเลขบัญชีธนาคารกรุงเทพ">
+              <div class="bank-item-info">
+                <span class="bank-item-label">🏦 ธ.กรุงเทพ (BBL)</span>
+                <span class="bank-item-num">864-0-698604</span>
               </div>
-              <div class="card-text">
-                <span class="card-platform">Facebook</span>
-                <span class="card-sub">Atthachai Panyasan • เฟซบุ๊กส่วนตัว</span>
-              </div>
+              <button class="bank-copy-icon-btn" aria-label="คัดลอกเลขบัญชี">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
             </div>
-            <div class="card-right">
-              <span class="action-pill 3d-touch-btn">เยี่ยมชม <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-            </div>
-          </div>
-        </a>
 
-        <!-- 3. LINE -->
-        <a href="https://line.me/ti/p/Eu7Z7YJfiG" target="_blank" rel="noopener noreferrer" class="link-card card-line tilt-card" data-label="LINE">
-          <div class="card-glow"></div>
-          <div class="card-sheen"></div>
-          <div class="card-depth-layer">
-            <div class="card-left">
-              <div class="icon-box 3d-icon">
-                <i class="fa-brands fa-line"></i>
+            <!-- Account 2: PromptPay -->
+            <div class="bank-item" id="copy-promptpay-btn" role="button" tabindex="0" title="แตะเพื่อคัดลอกเบอร์พร้อมเพย์">
+              <div class="bank-item-info">
+                <span class="bank-item-label">⚡ พร้อมเพย์ (PromptPay)</span>
+                <span class="bank-item-num">065-340-3849</span>
               </div>
-              <div class="card-text">
-                <span class="card-platform">LINE Chat</span>
-                <span class="card-sub">ทักแชทพูดคุย / ติดต่องานด่วน</span>
-              </div>
-            </div>
-            <div class="card-right">
-              <span class="action-pill 3d-touch-btn">เพิ่มเพื่อน <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-            </div>
-          </div>
-        </a>
-
-        <!-- 4. TikTok -->
-        <a href="https://www.tiktok.com/@wxveatp_ii" target="_blank" rel="noopener noreferrer" class="link-card card-tiktok tilt-card" data-label="TikTok">
-          <div class="card-glow"></div>
-          <div class="card-sheen"></div>
-          <div class="card-depth-layer">
-            <div class="card-left">
-              <div class="icon-box 3d-icon">
-                <i class="fa-brands fa-tiktok"></i>
-              </div>
-              <div class="card-text">
-                <div class="platform-with-eq">
-                  <span class="card-platform">TikTok</span>
-                  <div class="equalizer">
-                    <span class="eq-bar"></span>
-                    <span class="eq-bar"></span>
-                    <span class="eq-bar"></span>
-                    <span class="eq-bar"></span>
-                  </div>
-                </div>
-                <span class="card-sub">@wxveatp_ii • วิดีโอสั้น & ไลฟ์สตรีม</span>
-              </div>
-            </div>
-            <div class="card-right">
-              <span class="action-pill 3d-touch-btn">รับชม <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-            </div>
-          </div>
-        </a>
-
-        <!-- 5. Email Contact (Click to Open / Copy) -->
-        <div class="link-card card-email tilt-card" data-label="Email">
-          <div class="card-glow"></div>
-          <div class="card-sheen"></div>
-          <div class="card-depth-layer">
-            <div class="card-left">
-              <div class="icon-box 3d-icon">
-                <i class="fa-solid fa-envelope"></i>
-              </div>
-              <div class="card-text">
-                <span class="card-platform">Email ติดต่องาน</span>
-                <span class="card-sub">27pam2541@gmail.com</span>
-              </div>
-            </div>
-            <div class="card-right">
-              <button class="copy-icon-btn 3d-touch-btn" data-copy="27pam2541@gmail.com" data-type="อีเมล" aria-label="คัดลอกอีเมล">
-                <i class="fa-regular fa-copy"></i>
-                <span>คัดลอก</span>
+              <button class="bank-copy-icon-btn" aria-label="คัดลอกเบอร์พร้อมเพย์">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
               </button>
             </div>
           </div>
         </div>
-
-      </div>
-    </section>
-
-    <!-- Bank & Support Section (Quick Copy 3D Card) -->
-    <section class="section-container">
-      <div class="section-title">
-        <i class="fa-solid fa-wallet"></i>
-        <h2>การโอนเงิน & สนับสนุน</h2>
       </div>
 
-      <div class="banking-card glass-panel tilt-card">
-        <div class="card-sheen"></div>
-
-        <!-- Bank Item 1: Bangkok Bank (BBL) -->
-        <div class="bank-item">
-          <div class="bank-header">
-            <div class="bank-brand">
-              <div class="bank-badge-bbl 3d-icon">
-                <i class="fa-solid fa-building-columns"></i>
-              </div>
-              <div class="bank-meta">
-                <span class="bank-name">ธนาคารกรุงเทพ (Bangkok Bank)</span>
-                <span class="bank-holder">ชื่อบัญชี: Atthachai Panyasan</span>
-              </div>
-            </div>
-          </div>
-          <div class="bank-number-box">
-            <div class="number-display">
-              <span class="digits">864-0-698604</span>
-            </div>
-            <button class="quick-copy-btn btn-bbl 3d-touch-btn" data-copy="8640698604" data-type="เลขบัญชีธนาคารกรุงเทพ">
-              <i class="fa-regular fa-copy"></i>
-              <span>คัดลอกเลขบัญชี</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="bank-divider"></div>
-
-        <!-- Bank Item 2: PromptPay -->
-        <div class="bank-item">
-          <div class="bank-header">
-            <div class="bank-brand">
-              <div class="bank-badge-pp 3d-icon">
-                <i class="fa-solid fa-qrcode"></i>
-              </div>
-              <div class="bank-meta">
-                <span class="bank-name">พร้อมเพย์ (PromptPay)</span>
-                <span class="bank-holder">เบอร์โทรศัพท์มือถือ</span>
-              </div>
-            </div>
-          </div>
-          <div class="bank-number-box">
-            <div class="number-display">
-              <span class="digits">065-340-3849</span>
-            </div>
-            <button class="quick-copy-btn btn-promptpay 3d-touch-btn" data-copy="0653403849" data-type="เบอร์พร้อมเพย์">
-              <i class="fa-regular fa-copy"></i>
-              <span>คัดลอกพร้อมเพย์</span>
-            </button>
-          </div>
-        </div>
-
-      </div>
     </section>
 
     <!-- Footer -->
-    <footer class="main-footer">
-      <p class="footer-tagline">Designed with <i class="fa-solid fa-heart beat"></i> for Atthachai panyasan</p>
+    <footer class="footer-block">
+      <p class="footer-brand">Designed with ❤️ for Atthachai panyasan</p>
       <p class="footer-copy">© 2026 @wxveatp_ii • All Rights Reserved</p>
     </footer>
 
   </main>
 
-  <!-- Interactive 3D Toast Notification -->
-  <div class="toast-wrapper" id="toastWrapper">
-    <div class="toast-card glass-panel" id="toastCard">
-      <div class="toast-icon" id="toastIcon">
-        <i class="fa-solid fa-circle-check"></i>
-      </div>
-      <div class="toast-content">
-        <h4 id="toastTitle">คัดลอกสำเร็จ!</h4>
-        <p id="toastMessage">คัดลอกเรียบร้อยแล้ว</p>
+  <!-- Polished Glassmorphism Toast Notification -->
+  <div class="toast" id="toast">
+    <div class="toast-card-luxe">
+      <span class="toast-icon">✨</span>
+      <div class="toast-text-box">
+        <div class="toast-title" id="toast-title">คัดลอกสำเร็จ</div>
+        <div class="toast-message" id="toast-message">คัดลอกลงคลิปบอร์ดแล้ว!</div>
       </div>
     </div>
   </div>
 
-  <!-- JavaScript Application Logic with Cache Busting -->
-  <script src="app.js?v=3.0"></script>
+  <script src="app.js?v=luxe5"></script>
 </body>
 </html>
