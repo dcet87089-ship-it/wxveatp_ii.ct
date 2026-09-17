@@ -64,8 +64,8 @@ const profileGallery = [
   },
   {
     src: 'profile-10.png',
-    position: '78% 35%',
-    caption: 'เซลฟี่เสื้อโปโล'
+    position: '50% 50%',
+    caption: 'เซลฟี่เสื้อโปโล (เท่ๆ ตาคม)'
   },
   {
     src: 'profile-11.png',
@@ -80,7 +80,7 @@ let isSwitching = false;
 function preloadGallery() {
   profileGallery.forEach(p => {
     const img = new Image();
-    img.src = `${p.src}?v=v11_gallery`;
+    img.src = `${p.src}?v=v12_p10_fix`;
   });
 }
 
@@ -105,11 +105,11 @@ function switchProfilePhoto() {
   // Swap image mid-flip
   setTimeout(() => {
     if (frontImg) {
-      frontImg.src = `${photo.src}?v=v11_gallery`;
+      frontImg.src = `${photo.src}?v=v12_p10_fix`;
       frontImg.style.setProperty('object-position', photo.position, 'important');
     }
     if (backImg) {
-      backImg.src = `${photo.src}?v=v11_gallery`;
+      backImg.src = `${photo.src}?v=v12_p10_fix`;
       backImg.style.setProperty('object-position', photo.position, 'important');
     }
     if (counter) {
