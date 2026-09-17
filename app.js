@@ -144,19 +144,7 @@ function init3DTiltAndTouch() {
     card.addEventListener('mouseleave', handleReset);
   });
 
-  // Mobile Device Orientation (Gyroscope Parallax - Subtle & Stable)
-  if (window.DeviceOrientationEvent && typeof window.DeviceOrientationEvent.requestPermission !== 'function') {
-    window.addEventListener('deviceorientation', (e) => {
-      if (e.gamma === null || e.beta === null) return;
-      // Clamp gamma (-30 to 30) and beta (-30 to 30) to subtle 3.5 deg
-      const tiltY = Math.max(-3.5, Math.min(3.5, (e.gamma / 30) * 3.5));
-      const tiltX = Math.max(-3.5, Math.min(3.5, ((e.beta - 45) / 30) * -3.5));
-
-      tiltCards.forEach(card => {
-        card.style.transform = `perspective(1000px) rotateX(${tiltX.toFixed(1)}deg) rotateY(${tiltY.toFixed(1)}deg)`;
-      });
-    }, { passive: true });
-  }
+  // Gyroscope tilt removed on mobile to prevent orientation drift or edge clipping
 }
 
 /* ==========================================================
