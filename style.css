@@ -481,7 +481,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   margin-bottom: 5px;
   width: 100%;
 }
