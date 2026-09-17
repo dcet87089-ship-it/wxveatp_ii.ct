@@ -19,17 +19,17 @@ document.addEventListener('DOMContentLoaded', () => {
 const profileGallery = [
   {
     src: 'profile.png',
-    position: '50% 18%',
+    position: '50% 20%',
     caption: 'ลุคหลัก (Bacon Time)'
   },
   {
     src: 'profile-2.png',
     position: '50% 20%',
-    caption: 'ชุดฟุตบอล TN'
+    caption: 'ชุดฟุตบอล TN สดใส'
   },
   {
     src: 'profile-3.png',
-    position: '50% 22%',
+    position: '50% 25%',
     caption: 'ตอนเด็กสุดสดใส'
   },
   {
@@ -39,13 +39,38 @@ const profileGallery = [
   },
   {
     src: 'profile-5.jpg',
-    position: '38% 28%',
+    position: '38% 30%',
     caption: 'จังหวะปะทะในสนาม'
   },
   {
     src: 'profile-6.png',
-    position: '50% 28%',
+    position: '50% 55%',
     caption: 'ลุคแว่นหนวดสุดชิล'
+  },
+  {
+    src: 'profile-7.png',
+    position: '50% 25%',
+    caption: 'เสื้อยืด Nike ดำ'
+  },
+  {
+    src: 'profile-8.png',
+    position: '45% 25%',
+    caption: 'ชุดช่างไฟฟ้าสีน้ำเงิน'
+  },
+  {
+    src: 'profile-9.png',
+    position: '50% 50%',
+    caption: 'น้องส้มหลับปุ๋ย 🐱'
+  },
+  {
+    src: 'profile-10.png',
+    position: '78% 35%',
+    caption: 'เซลฟี่เสื้อโปโล'
+  },
+  {
+    src: 'profile-11.png',
+    position: '50% 45%',
+    caption: 'น้องแมวตาโต 🐱'
   }
 ];
 
@@ -55,7 +80,7 @@ let isSwitching = false;
 function preloadGallery() {
   profileGallery.forEach(p => {
     const img = new Image();
-    img.src = `${p.src}?v=v10_switch`;
+    img.src = `${p.src}?v=v11_gallery`;
   });
 }
 
@@ -80,12 +105,12 @@ function switchProfilePhoto() {
   // Swap image mid-flip
   setTimeout(() => {
     if (frontImg) {
-      frontImg.src = `${photo.src}?v=v10_switch`;
-      frontImg.style.objectPosition = photo.position;
+      frontImg.src = `${photo.src}?v=v11_gallery`;
+      frontImg.style.setProperty('object-position', photo.position, 'important');
     }
     if (backImg) {
-      backImg.src = `${photo.src}?v=v10_switch`;
-      backImg.style.objectPosition = photo.position;
+      backImg.src = `${photo.src}?v=v11_gallery`;
+      backImg.style.setProperty('object-position', photo.position, 'important');
     }
     if (counter) {
       counter.textContent = `${currentPhotoIndex + 1} / ${profileGallery.length}`;
