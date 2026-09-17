@@ -14,25 +14,106 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================
-   3D Rotating Coin Tap / Flip Boost
+   Profile Gallery & Continuous Switcher
    ========================================================== */
-function initCoinInteraction() {
-  const coin = document.getElementById('avatar-coin');
-  if (!coin) return;
+const profileGallery = [
+  {
+    src: 'profile.png',
+    position: '50% 18%',
+    caption: 'ลุคหลัก (Bacon Time)'
+  },
+  {
+    src: 'profile-2.png',
+    position: '50% 20%',
+    caption: 'ชุดฟุตบอล TN'
+  },
+  {
+    src: 'profile-3.png',
+    position: '50% 22%',
+    caption: 'ตอนเด็กสุดสดใส'
+  },
+  {
+    src: 'profile-4.jpg',
+    position: '48% 28%',
+    caption: 'ลงแข่งฟุตบอล #10'
+  },
+  {
+    src: 'profile-5.jpg',
+    position: '38% 28%',
+    caption: 'จังหวะปะทะในสนาม'
+  },
+  {
+    src: 'profile-6.png',
+    position: '50% 28%',
+    caption: 'ลุคแว่นหนวดสุดชิล'
+  }
+];
 
-  let isFlipping = false;
-  coin.addEventListener('click', () => {
-    if (isFlipping) return;
-    isFlipping = true;
-    triggerHaptic([40, 60, 40]);
-    coin.classList.add('flip-boost');
-    launchConfetti();
+let currentPhotoIndex = 0;
+let isSwitching = false;
 
-    setTimeout(() => {
-      coin.classList.remove('flip-boost');
-      isFlipping = false;
-    }, 1150);
+function preloadGallery() {
+  profileGallery.forEach(p => {
+    const img = new Image();
+    img.src = `${p.src}?v=v10_switch`;
   });
+}
+
+function switchProfilePhoto() {
+  if (isSwitching) return;
+  isSwitching = true;
+
+  currentPhotoIndex = (currentPhotoIndex + 1) % profileGallery.length;
+  const photo = profileGallery[currentPhotoIndex];
+
+  const coin = document.getElementById('avatar-coin');
+  const frontImg = document.getElementById('avatar-image');
+  const backImg = document.getElementById('avatar-image-back');
+  const counter = document.getElementById('avatar-counter');
+
+  triggerHaptic([35, 55, 35]);
+
+  if (coin) {
+    coin.classList.add('flip-boost');
+  }
+
+  // Swap image mid-flip
+  setTimeout(() => {
+    if (frontImg) {
+      frontImg.src = `${photo.src}?v=v10_switch`;
+      frontImg.style.objectPosition = photo.position;
+    }
+    if (backImg) {
+      backImg.src = `${photo.src}?v=v10_switch`;
+      backImg.style.objectPosition = photo.position;
+    }
+    if (counter) {
+      counter.textContent = `${currentPhotoIndex + 1} / ${profileGallery.length}`;
+    }
+  }, 350);
+
+  setTimeout(() => {
+    if (coin) coin.classList.remove('flip-boost');
+    isSwitching = false;
+  }, 1150);
+
+  showToast('สลับรูปโปรไฟล์แล้ว ✨', `${photo.caption} (${currentPhotoIndex + 1}/${profileGallery.length})`, '📸');
+  launchConfetti();
+}
+
+function initCoinInteraction() {
+  preloadGallery();
+
+  const coin = document.getElementById('avatar-coin');
+  const switchBtn = document.getElementById('avatar-switch-btn');
+
+  if (coin) {
+    coin.addEventListener('click', switchProfilePhoto);
+  }
+
+  if (switchBtn) {
+    switchBtn.addEventListener('click', switchProfilePhoto);
+  }
 }
 
 /* ==========================================================

@@ -464,6 +464,69 @@ body {
   50% { opacity: 1; transform: scale(1.35) rotate(45deg); }
 }
 
+/* Switch Profile Picture Button */
+.avatar-switch-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -4px;
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 3;
+}
+
+.avatar-switch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 15px;
+  background: rgba(30, 41, 69, 0.85);
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  border-radius: 20px;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 
+    0 4px 14px rgba(0, 0, 0, 0.4),
+    0 0 12px rgba(56, 189, 248, 0.25);
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  user-select: none;
+}
+
+.avatar-switch-btn:hover {
+  background: rgba(56, 189, 248, 0.22);
+  border-color: #38bdf8;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 
+    0 6px 18px rgba(0, 0, 0, 0.5),
+    0 0 18px rgba(56, 189, 248, 0.45);
+}
+
+.avatar-switch-btn:active {
+  transform: scale(0.95);
+}
+
+.switch-btn-icon {
+  width: 15px;
+  height: 15px;
+  color: #38bdf8;
+}
+
+.avatar-counter {
+  padding: 2px 7px;
+  border-radius: 10px;
+  background: rgba(56, 189, 248, 0.2);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: #7dd3fc;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
 /* ==========================================================
    Identity & Metallic Shimmer Typography
    ========================================================== */
